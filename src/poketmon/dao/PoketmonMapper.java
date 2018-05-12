@@ -3,7 +3,6 @@ package poketmon.dao;
 import poketmon.vo.Poketmon;
 
 public interface PoketmonMapper {
-	public boolean createTable();
 	public int insertPoketmon(Poketmon p);
 	public int updatePoketmon(Poketmon p);
 	public int deletePoketmon(Poketmon p);
