@@ -2,17 +2,10 @@
 <!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="poketmon.dao.PoketmonMapper">
+	<
 	<insert id="insertPoketmon" parameterType="Poketmon">
-	INSERT INTO Poketmon (ko_name, jp_name, NUMBER)
-	VALUES (#{ko_name}, #{jp_name}, #{number})
-	</insert>
-	<insert id="insertDetail" parameterType="Poketmon">
-	INSERT INTO Detail (NUMBER, TYPE, SORT, CHARACTER, H_CHARACTER, E_POINT)
-	VALUES(#{number},#{type},#{sort},#{spec},#{hspec},#{exp})
-	</insert>
-	<insert id="insertBasic_Info" parameterType="Poketmon">
-	INSERT INTO Basic_Info (NUMBER, HEIGHT, WEIGHT, C_RATE, G_RATE)
-	VALUES(#{number},#{tall},#{weight},#{crate},#{grate})
+	INSERT INTO poketmon (No, kor_name, jap_name, height, weight, c_rate, g_rate, type, sort, character, h_character, e_point)
+	VALUES (#{No}, #{kor_name}, #{jap_name}, #{height}, #{weight}, #{c_rate}, #{g_rate}, #{type}, #{sort}, #{character}, #{h_character}, #{e_point})
 	</insert>
 	 
 	 
