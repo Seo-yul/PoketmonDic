@@ -27,7 +27,8 @@ public class PoketmonUI {
 //		ui.init();
 //		ui.getWikidata("피카츄");
 //		ui.kanjiDic();
-		ui.jp();
+//		ui.jp();
+		ui.getWikiPhoto("이름입력?");
 	}
 	public void jp() { 
 		Scanner sc = new Scanner(System.in);
@@ -174,4 +175,44 @@ public class PoketmonUI {
 			//
 		}
 	}
+	public void getWikiPhoto(String name) { 
+		Scanner sc = new Scanner(System.in);
+		name = sc.nextLine();
+		String initUrl = "http://ko.pokemon.wikia.com/wiki/"+name;
+		String imgUrl = null;
+		Connection con = Jsoup.connect(initUrl);
+		Elements els = null;
+		try {
+			Document doc = con.get();
+			els = doc.select("div.image.rounded a img");
+			for(Element e : els) {
+//			System.out.println(e.attr("src"));
+			imgUrl =e.attr("src");
+			}
+			
+			URL url=new URL(imgUrl);
+			
+			InputStream is = url.openStream();
+		    File file = new File("images\\"+name+".png");
+		    OutputStream os = new FileOutputStream(file);
+
+		    byte[] b = new byte[2048];
+		    int length =0;
+
+		    while ((length = is.read(b)) != -1) {
+		        os.write(b, 0, length);
+		    }
+
+		    is.close();
+		    os.close();
+			
+			  
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			//
+		}
+	}
 }
+
+
