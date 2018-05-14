@@ -21,7 +21,7 @@ public class Poketmon {
 	public Poketmon(String no, String kor_name, String jap_name, String height, String weight, int c_rate,
 			String g_rate, String type, String sort, String character, String h_character, String e_point) {
 		super();
-		No = no;
+		this.No = no;
 		this.kor_name = kor_name;
 		this.jap_name = jap_name;
 		this.height = height;

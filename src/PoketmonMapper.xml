@@ -3,16 +3,19 @@
 
 <mapper namespace="poketmon.dao.PoketmonMapper">
 
-	 <select id="findPoketmon" parameterType="String" resultType="Poketmon">
-		SELECT * FROM POKETMON
-	</select>
-
 	<insert id="insertPoketmon" parameterType="Poketmon">
-		INSERT INTO POKETMON VALUES(NO=#{no}, KOR_NAME=#{kor_name}, JAP_NAME=#{jap_name}, HEIGHT=#{height}, WEIGHT=#{weight},
-		C_RATE=#{c_rate}, G_RATE=#{g_rate}, TYPE=#{type}, SORT=#{sort}, CHARACTER=#{character}, H_CHARACTER=#{h_character}, E_POINT=#{e_point})
+		INSERT INTO poketmon
+		(NO, KOR_NAME, JAP_NAME, HEIGHT, WEIGHT, C_RATE, G_RATE, TYPE, SORT, CHARACTER, H_CHARACTER, E_POINT)
+		VALUES
+		(#{No}, #{kor_name}, #{jap_name}, #{height}, #{weight}, #{c_rate}, #{g_rate}, #{type},#{sort}, #{character}, #{h_character}, #{e_point})
 	</insert>
 	
-	<update id="updatePoketmon" parameterType="Poketmon">
+	
+	<!-- 
+	<select id="findPoketmon" parameterType="String" resultType="Poketmon">
+		SELECT * FROM POKETMON
+	</select>
+<update id="updatePoketmon" parameterType="Poketmon">
 		UPDATE POKETMON SET KOR_NAME=#{kor_name}, JAP_NAME=#{jap_name}, HEIGHT=#{height}, WEIGHT=#{weight},
 		C_RATE=#{c_rate}, G_RATE=#{g_rate}, TYPE=#{type}, SORT=#{sort}, CHARACTER=#{character}, H_CHARACTER=#{h_character}, E_POINT=#{e_point} 
 		WHERE NO=#{no}
@@ -20,7 +23,7 @@
 	
 	<delete id="deletePoketmon" parameterType="String">
 		DELETE POKETMON WHERE NO=#{no}
-	</delete>
-	 
+	</delete> 
+	  -->
 	 
 </mapper>
