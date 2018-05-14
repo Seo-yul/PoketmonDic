@@ -99,7 +99,7 @@ public class PoketmonUI {
 			for (Element ee : els) {
 				getWikidata((ee.text()));
 				count ++;
-				if(count==806)break;
+				if(count==807)break;
 			}
 
 		} catch (IOException e) {
@@ -175,6 +175,7 @@ public class PoketmonUI {
 			//
 		}
 	}
+	
 	public void getWikiPhoto(String name) { 
 		Scanner sc = new Scanner(System.in);
 		name = sc.nextLine();
