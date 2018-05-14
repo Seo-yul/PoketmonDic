@@ -23,6 +23,8 @@ import javax.swing.SwingConstants;
 import java.awt.Component;
 
 public class PoketmonUserUI extends JFrame {
+	public PoketmonUserUI() {
+	}
 
 	private JPanel contentPane;
 	private JPanel find_panel;
