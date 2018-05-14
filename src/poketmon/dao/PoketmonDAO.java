@@ -59,6 +59,7 @@ public class PoketmonDAO {
 			//
 		}
 	}
+	
 	public boolean getWikidata(String name) {
 		boolean result = false;
 		poketmon = new Poketmon();
