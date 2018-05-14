@@ -258,12 +258,12 @@ public class PoketmonAdminUI extends JFrame implements ActionListener {
 		panel_3.add(panel_10);
 		panel_10.setLayout(new GridLayout(2, 2, 0, 0));
 		
-		lblNewLabel_8 = new JLabel("타입");
-		lblNewLabel_8.setBackground(Color.ORANGE);
-		lblNewLabel_8.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_8.setHorizontalTextPosition(SwingConstants.CENTER);
-		lblNewLabel_8.setBorder(new LineBorder(Color.LIGHT_GRAY, 1, true));
-		panel_10.add(lblNewLabel_8);
+		lblNewLabel_16 = new JLabel("Lv.100 경험치량");
+		panel_10.add(lblNewLabel_16);
+		lblNewLabel_16.setBackground(Color.ORANGE);
+		lblNewLabel_16.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_16.setHorizontalTextPosition(SwingConstants.CENTER);
+		lblNewLabel_16.setBorder(new LineBorder(Color.LIGHT_GRAY, 1, true));
 		
 		lblNewLabel_9 = new JLabel("분류");
 		lblNewLabel_9.setBackground(Color.ORANGE);
@@ -272,12 +272,12 @@ public class PoketmonAdminUI extends JFrame implements ActionListener {
 		lblNewLabel_9.setBorder(new LineBorder(Color.LIGHT_GRAY, 1, true));
 		panel_10.add(lblNewLabel_9);
 		
-		lblNewLabel_10 = new JTextField();
-		lblNewLabel_10.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_10.setBorder(new LineBorder(Color.LIGHT_GRAY, 1, true));
-		lblNewLabel_10.setBackground(Color.WHITE);
-		lblNewLabel_10.setColumns(10);
-		panel_10.add(lblNewLabel_10);
+		lblNewLabel_17 = new JTextField();
+		panel_10.add(lblNewLabel_17);
+		lblNewLabel_17.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_17.setBorder(new LineBorder(Color.LIGHT_GRAY, 1, true));
+		lblNewLabel_17.setBackground(Color.WHITE);
+		lblNewLabel_17.setColumns(10);
 		
 		lblNewLabel_11 = new JTextField();
 		lblNewLabel_11.setHorizontalAlignment(SwingConstants.CENTER);
@@ -326,19 +326,19 @@ public class PoketmonAdminUI extends JFrame implements ActionListener {
 		panel_3.add(panel_12);
 		panel_12.setLayout(new GridLayout(2, 0, 0, 0));
 		
-		lblNewLabel_16 = new JLabel("Lv.100 경험치량");
-		lblNewLabel_16.setBackground(Color.ORANGE);
-		lblNewLabel_16.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_16.setHorizontalTextPosition(SwingConstants.CENTER);
-		lblNewLabel_16.setBorder(new LineBorder(Color.LIGHT_GRAY, 1, true));
-		panel_12.add(lblNewLabel_16);
+		lblNewLabel_8 = new JLabel("타입");
+		panel_12.add(lblNewLabel_8);
+		lblNewLabel_8.setBackground(Color.ORANGE);
+		lblNewLabel_8.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_8.setHorizontalTextPosition(SwingConstants.CENTER);
+		lblNewLabel_8.setBorder(new LineBorder(Color.LIGHT_GRAY, 1, true));
 		
-		lblNewLabel_17 = new JTextField();
-		lblNewLabel_17.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_17.setBorder(new LineBorder(Color.LIGHT_GRAY, 1, true));
-		lblNewLabel_17.setBackground(Color.WHITE);
-		lblNewLabel_17.setColumns(10);
-		panel_12.add(lblNewLabel_17);
+		lblNewLabel_10 = new JTextField();
+		panel_12.add(lblNewLabel_10);
+		lblNewLabel_10.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_10.setBorder(new LineBorder(Color.LIGHT_GRAY, 1, true));
+		lblNewLabel_10.setBackground(Color.WHITE);
+		lblNewLabel_10.setColumns(10);
 		
 		panel_4 = new JPanel();
 		panel_4.setBackground(Color.ORANGE);
@@ -366,13 +366,16 @@ public class PoketmonAdminUI extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		JButton jb = (JButton)e.getSource();
 		String getText = null;
+		boolean result = true;
 		if(jb==btnNewButton) {
 			getText = textField.getText();
 			if(dao.findPoketmon(getText)==null) {
-				dao.getWikidata(getText);
-				dao.getWikiPhoto(getText);
+				result=dao.getWikidata(getText);
+				
 				
 			}
+			if(result) {
+				dao.getWikiPhoto(getText);
 				poketmon = dao.findPoketmon(getText);
 				lblNewLabel_20.setText(poketmon.getNo());
 				lblNewLabel_18.setText(poketmon.getKor_name());
@@ -389,10 +392,9 @@ public class PoketmonAdminUI extends JFrame implements ActionListener {
 				Icon icon =new ImageIcon("images\\"+getText+".png");
 				lblNewLabel_21.setIcon(icon);
 				panel_7.add(lblNewLabel_21, BorderLayout.CENTER);
-			
-			
+				repaint();
+			}
 		}
 		
-		repaint();
 	}
 }

@@ -86,7 +86,6 @@ public class PoketmonDAO {
 					}
 				if((count<=4)||(count>tmp&&count<tmp+5)) {
 				list.add(ee.text());
-//				System.out.println(ee.text()+" "+" 번호:"+count);
 				}
 				if(flag)
 				if(ee.text().equals("70")) {
@@ -120,7 +119,8 @@ public class PoketmonDAO {
 			poketmon.setG_rate(list.get(8));
 			result=this.insertPoketmon(poketmon);
 		} catch (IOException e) {
-			e.printStackTrace();
+			System.out.println("없는 포켓몬입니다.");
+			return false;
 		} finally {
 			//
 		}
