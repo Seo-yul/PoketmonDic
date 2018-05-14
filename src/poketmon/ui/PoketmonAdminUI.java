@@ -392,9 +392,12 @@ public class PoketmonAdminUI extends JFrame implements ActionListener {
 				Icon icon =new ImageIcon("images\\"+getText+".png");
 				lblNewLabel_21.setIcon(icon);
 				panel_7.add(lblNewLabel_21, BorderLayout.CENTER);
-				repaint();
+				
+			}
+			if(!result) {
+				//경고창
 			}
 		}
-		
+		repaint();
 	}
 }
