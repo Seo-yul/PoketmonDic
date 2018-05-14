@@ -23,9 +23,14 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import java.awt.Component;
 import javax.swing.border.LineBorder;
-import java.awt.SystemColor;
 
-public class PoketmonUserUI extends JFrame {
+import poketmon.dao.PoketmonDAO;
+
+import java.awt.SystemColor;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+public class PoketmonUserUI extends JFrame implements ActionListener {
 
 	private JPanel contentPane;
 
@@ -92,7 +97,9 @@ public class PoketmonUserUI extends JFrame {
 	private JPanel hch_panel;
 	private JPanel hch2_panel;
 	private JLabel hch_lbl;
-	private JLabel lblNewLabel_1;
+	private JLabel hchv_lbl;
+	private PoketmonDAO dao = new PoketmonDAO();
+	
 	/**
 	 * Launch the application.
 	 */
@@ -140,6 +147,7 @@ public class PoketmonUserUI extends JFrame {
 		//insert_tf.setColumns(10);
 		//insert_tf.setPreferredSize(new Dimension(50, 20));
 		insert_btn = new JButton("검색");
+		insert_btn.addActionListener(this);
 		insert_btn.setBorder(new LineBorder(new Color(255, 165, 0), 1, true));
 		insert_btn.setPreferredSize(new Dimension(60, 30));
 		insert_btn.setHorizontalTextPosition(SwingConstants.CENTER);
@@ -446,12 +454,12 @@ public class PoketmonUserUI extends JFrame {
 		h_character_panel.add(hch2_panel);
 		hch2_panel.setLayout(new BorderLayout(0, 0));
 		
-		lblNewLabel_1 = new JLabel("?");
-		lblNewLabel_1.setHorizontalTextPosition(SwingConstants.CENTER);
-		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_1.setBorder(new LineBorder(Color.WHITE, 1, true));
-		lblNewLabel_1.setBackground(Color.WHITE);
-		hch2_panel.add(lblNewLabel_1);
+		hchv_lbl = new JLabel("?");
+		hchv_lbl.setHorizontalTextPosition(SwingConstants.CENTER);
+		hchv_lbl.setHorizontalAlignment(SwingConstants.CENTER);
+		hchv_lbl.setBorder(new LineBorder(Color.WHITE, 1, true));
+		hchv_lbl.setBackground(Color.WHITE);
+		hch2_panel.add(hchv_lbl);
 		
 		bottom_panel = new JPanel();
 		bottom_panel.setBorder(new LineBorder(Color.WHITE, 1, true));
@@ -491,4 +499,15 @@ public class PoketmonUserUI extends JFrame {
 	}
 
 
+	public void actionPerformed(ActionEvent e) {
+		if(e.getActionCommand() == insert_btn.getActionCommand()) {
+			String name = insert_tf.getText();
+			if (dao.findPoketmon(name) != null) {
+				
+			} else {
+				
+			}
+			
+		}
+	}
 }
