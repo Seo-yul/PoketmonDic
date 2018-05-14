@@ -503,6 +503,7 @@ public class PoketmonUserUI extends JFrame implements ActionListener {
 		if(e.getActionCommand() == insert_btn.getActionCommand()) {
 			String name = insert_tf.getText();
 			if (dao.findPoketmon(name) != null) {
+				ko_name_lbl.setText(dao.findPoketmon(name).getKor_name());
 				
 			} else {
 				
