@@ -24,8 +24,6 @@ public class PoketmonDAO {
 	private Poketmon poketmon = null;
 	
 	public void getWikiPhoto(String name) { 
-		Scanner sc = new Scanner(System.in);
-		name = sc.nextLine();
 		String initUrl = "http://ko.pokemon.wikia.com/wiki/"+name;
 		String imgUrl = null;
 		Connection con = Jsoup.connect(initUrl);
@@ -102,15 +100,15 @@ public class PoketmonDAO {
 			poketmon.setNo(doc.selectFirst("strong.rounded").text());
 			poketmon.setKor_name(doc.selectFirst(".name-ko strong").text());
 			poketmon.setJap_name(doc.selectFirst(".name-ja span").text());
+			for(int i=0; i<list.size();i++) {
+				if(list.get(i).length()<1)
+					list.set(i, "알려지지않음");
+			}
 			poketmon.setType(list.get(0));
 			poketmon.setSort(list.get(1));
 			poketmon.setCharacter(list.get(2));
 			poketmon.setH_character(list.get(3));
-			try {
-				poketmon.setE_point(list.get(4));
-			} catch (Exception e) {
-				poketmon.setE_point("알려지지 않음");
-			}
+			poketmon.setE_point(list.get(4));
 			poketmon.setHeight(list.get(5));
 			poketmon.setWeight(list.get(6));
 			try {

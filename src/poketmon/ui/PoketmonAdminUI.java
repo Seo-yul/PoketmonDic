@@ -9,6 +9,7 @@ import java.awt.GridLayout;
 import java.awt.Insets;
 import java.io.File;
 
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -21,6 +22,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
 import poketmon.dao.PoketmonDAO;
+import poketmon.vo.Poketmon;
 
 import java.awt.Dimension;
 import java.awt.event.ActionListener;
@@ -72,7 +74,7 @@ public class PoketmonAdminUI extends JFrame implements ActionListener {
 	private JLabel lblNewLabel_21;
 	private JTextField textField_1;
 	private PoketmonDAO dao = new PoketmonDAO();
-	
+	private Poketmon poketmon = new Poketmon();
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -103,6 +105,7 @@ public class PoketmonAdminUI extends JFrame implements ActionListener {
 		panel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
 		textField = new JTextField();
+		textField.setHorizontalAlignment(SwingConstants.CENTER);
 		textField.setBackground(Color.WHITE);
 		textField.setPreferredSize(new Dimension(6, 25));
 		textField.setMinimumSize(new Dimension(6, 25));
@@ -120,7 +123,7 @@ public class PoketmonAdminUI extends JFrame implements ActionListener {
 		panel_2 = new JPanel();
 		
 		panel_1 = new JPanel();
-		panel_1.setPreferredSize(new Dimension(380, 10));
+		panel_1.setPreferredSize(new Dimension(360, 10));
 		panel_1.setBackground(Color.ORANGE);
 		contentPane.add(panel_1, BorderLayout.WEST);
 		panel_1.setLayout(new BorderLayout(0, 0));
@@ -164,7 +167,7 @@ public class PoketmonAdminUI extends JFrame implements ActionListener {
 		panel_7.setBackground(Color.WHITE);
 		panel_1.add(panel_7, BorderLayout.CENTER);
 		panel_7.setLayout(new BorderLayout(0, 0));
-		lblNewLabel_21 = new JLabel(new ImageIcon("images\\"+"꼬부기"+".png"));
+		lblNewLabel_21 = new JLabel(new ImageIcon("images\\.png"));
 		lblNewLabel_21.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_21.setHorizontalTextPosition(SwingConstants.CENTER);
 		panel_7.add(lblNewLabel_21, BorderLayout.CENTER);
@@ -175,7 +178,7 @@ public class PoketmonAdminUI extends JFrame implements ActionListener {
 		
 		panel_3 = new JPanel();
 		panel_3.setBorder(new LineBorder(Color.ORANGE, 1, true));
-		panel_3.setPreferredSize(new Dimension(230, 10));
+		panel_3.setPreferredSize(new Dimension(260, 10));
 		panel_3.setBackground(Color.ORANGE);
 		contentPane.add(panel_3, BorderLayout.EAST);
 		panel_3.setLayout(new GridLayout(5, 0, 0, 0));
@@ -365,8 +368,31 @@ public class PoketmonAdminUI extends JFrame implements ActionListener {
 		String getText = null;
 		if(jb==btnNewButton) {
 			getText = textField.getText();
-			dao.getWikidata(getText);
-			dao.getWikiPhoto(getText);
+			if(dao.findPoketmon(getText)==null) {
+				dao.getWikidata(getText);
+				dao.getWikiPhoto(getText);
+				
+			}
+				poketmon = dao.findPoketmon(getText);
+				lblNewLabel_20.setText(poketmon.getNo());
+				lblNewLabel_18.setText(poketmon.getKor_name());
+				lblNewLabel_19.setText(poketmon.getJap_name());
+				lblNewLabel_2.setText(poketmon.getHeight());
+				lblNewLabel_3.setText(poketmon.getWeight());
+				lblNewLabel_6.setText(""+poketmon.getC_rate());
+				lblNewLabel_7.setText(poketmon.getG_rate());
+				lblNewLabel_10.setText(poketmon.getType());
+				lblNewLabel_11.setText(poketmon.getSort());
+				lblNewLabel_14.setText(poketmon.getCharacter());
+				lblNewLabel_15.setText(poketmon.getH_character());
+				lblNewLabel_17.setText(poketmon.getE_point());
+				Icon icon =new ImageIcon("images\\"+getText+".png");
+				lblNewLabel_21.setIcon(icon);
+				panel_7.add(lblNewLabel_21, BorderLayout.CENTER);
+			
+			
 		}
+		
+		repaint();
 	}
 }
