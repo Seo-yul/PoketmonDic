@@ -74,7 +74,7 @@ public class PoketmonAdminUI extends JFrame implements ActionListener {
 	private JTextField lblNewLabel_17;
 	private JPanel panel_13;
 	private JPanel panel_14;
-	private JTextField lblNewLabel_18;
+	private JLabel lblNewLabel_18;
 	private JTextField lblNewLabel_19;
 	private JTextField lblNewLabel_20;
 	private JLabel lblNewLabel_21;
@@ -150,11 +150,11 @@ public class PoketmonAdminUI extends JFrame implements ActionListener {
 		panel_6.add(panel_13);
 		panel_13.setLayout(new GridLayout(2, 0, 0, 0));
 
-		lblNewLabel_18 = new JTextField("한국_이름");
+		lblNewLabel_18 = new JLabel("한국_이름");
 		lblNewLabel_18.setBorder(new LineBorder(new Color(171, 173, 179)));
-		lblNewLabel_18.setBackground(Color.ORANGE);
 		lblNewLabel_18.setForeground(new Color(25, 25, 112));
-		lblNewLabel_18.setFont(new Font("SansSerif", lblNewLabel_18.getFont().getStyle() | Font.BOLD, 25));
+		lblNewLabel_18.setFont(new Font("굴림", Font.BOLD, 25));
+		lblNewLabel_18.setHorizontalTextPosition(SwingConstants.CENTER);
 		lblNewLabel_18.setHorizontalAlignment(SwingConstants.CENTER);
 		panel_13.add(lblNewLabel_18);
 
@@ -164,7 +164,9 @@ public class PoketmonAdminUI extends JFrame implements ActionListener {
 		lblNewLabel_19.setForeground(new Color(25, 25, 112));
 		lblNewLabel_19.setFont(
 				new Font("SansSerif", lblNewLabel_19.getFont().getStyle(), lblNewLabel_19.getFont().getSize()));
-		lblNewLabel_19.setHorizontalAlignment(SwingConstants.CENTER);
+
+		lblNewLabel_19.setForeground(new Color(25, 25, 112));
+
 		panel_13.add(lblNewLabel_19);
 
 		panel_14 = new JPanel();
@@ -174,8 +176,9 @@ public class PoketmonAdminUI extends JFrame implements ActionListener {
 
 		lblNewLabel_20 = new JTextField("No. 000");
 		lblNewLabel_20.setBorder(new LineBorder(new Color(171, 173, 179)));
+
 		lblNewLabel_20.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_20.setFont(new Font("SansSerif", lblNewLabel_20.getFont().getStyle() | Font.BOLD, 25));
+		lblNewLabel_20.setFont(new Font("굴림", Font.BOLD, 25));
 		panel_14.add(lblNewLabel_20);
 
 		panel_7 = new JPanel();
@@ -206,7 +209,6 @@ public class PoketmonAdminUI extends JFrame implements ActionListener {
 		panel_8.setLayout(new GridLayout(2, 2, 0, 0));
 
 		lblNewLabel = new JLabel("키");
-		lblNewLabel.setFont(new Font("SansSerif", lblNewLabel.getFont().getStyle() | Font.BOLD, 18));
 		lblNewLabel.setBackground(Color.ORANGE);
 		lblNewLabel.setHorizontalTextPosition(SwingConstants.CENTER);
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -215,7 +217,6 @@ public class PoketmonAdminUI extends JFrame implements ActionListener {
 		panel_8.add(lblNewLabel);
 
 		lblNewLabel_1 = new JLabel("몸무게");
-		lblNewLabel_1.setFont(new Font("SansSerif", lblNewLabel.getFont().getStyle() | Font.BOLD, 18));
 		lblNewLabel_1.setBackground(Color.ORANGE);
 		lblNewLabel_1.setHorizontalTextPosition(SwingConstants.CENTER);
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
@@ -243,14 +244,12 @@ public class PoketmonAdminUI extends JFrame implements ActionListener {
 		panel_9.setLayout(new GridLayout(2, 2, 0, 0));
 
 		lblNewLabel_4 = new JLabel("포획률");
-		lblNewLabel_4.setFont(new Font("SansSerif", lblNewLabel.getFont().getStyle() | Font.BOLD, 18));
 		lblNewLabel_4.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_4.setHorizontalTextPosition(SwingConstants.CENTER);
 		lblNewLabel_4.setBorder(new LineBorder(Color.LIGHT_GRAY, 1, true));
 		panel_9.add(lblNewLabel_4);
 
 		lblNewLabel_5 = new JLabel("성비");
-		lblNewLabel_5.setFont(new Font("SansSerif", lblNewLabel.getFont().getStyle() | Font.BOLD, 18));
 		lblNewLabel_5.setHorizontalTextPosition(SwingConstants.CENTER);
 		lblNewLabel_5.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_5.setBorder(new LineBorder(Color.LIGHT_GRAY, 1, true));
@@ -277,7 +276,6 @@ public class PoketmonAdminUI extends JFrame implements ActionListener {
 		panel_10.setLayout(new GridLayout(2, 2, 0, 0));
 
 		lblNewLabel_8 = new JLabel("타입");
-		lblNewLabel_8.setFont(new Font("SansSerif", lblNewLabel.getFont().getStyle() | Font.BOLD, 18));
 		lblNewLabel_8.setBackground(Color.ORANGE);
 		lblNewLabel_8.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_8.setHorizontalTextPosition(SwingConstants.CENTER);
@@ -285,7 +283,6 @@ public class PoketmonAdminUI extends JFrame implements ActionListener {
 		panel_10.add(lblNewLabel_8);
 
 		lblNewLabel_9 = new JLabel("분류");
-		lblNewLabel_9.setFont(new Font("SansSerif", lblNewLabel.getFont().getStyle() | Font.BOLD, 18));
 		lblNewLabel_9.setBackground(Color.ORANGE);
 		lblNewLabel_9.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_9.setHorizontalTextPosition(SwingConstants.CENTER);
@@ -313,7 +310,6 @@ public class PoketmonAdminUI extends JFrame implements ActionListener {
 		panel_11.setLayout(new GridLayout(2, 2, 0, 0));
 
 		lblNewLabel_12 = new JLabel("특성");
-		lblNewLabel_12.setFont(new Font("SansSerif", lblNewLabel.getFont().getStyle() | Font.BOLD, 18));
 		lblNewLabel_12.setBackground(Color.ORANGE);
 		lblNewLabel_12.setHorizontalTextPosition(SwingConstants.CENTER);
 		lblNewLabel_12.setHorizontalAlignment(SwingConstants.CENTER);
@@ -321,7 +317,6 @@ public class PoketmonAdminUI extends JFrame implements ActionListener {
 		panel_11.add(lblNewLabel_12);
 
 		lblNewLabel_13 = new JLabel("숨겨진 특성");
-		lblNewLabel_13.setFont(new Font("SansSerif", lblNewLabel.getFont().getStyle() | Font.BOLD, 18));
 		lblNewLabel_13.setBackground(Color.ORANGE);
 		lblNewLabel_13.setHorizontalTextPosition(SwingConstants.CENTER);
 		lblNewLabel_13.setHorizontalAlignment(SwingConstants.CENTER);
@@ -349,7 +344,6 @@ public class PoketmonAdminUI extends JFrame implements ActionListener {
 		panel_12.setLayout(new GridLayout(2, 0, 0, 0));
 
 		lblNewLabel_16 = new JLabel("Lv.100 경험치량");
-		lblNewLabel_16.setFont(new Font("SansSerif", lblNewLabel.getFont().getStyle() | Font.BOLD, 18));
 		lblNewLabel_16.setBackground(Color.ORANGE);
 		lblNewLabel_16.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_16.setHorizontalTextPosition(SwingConstants.CENTER);
@@ -369,7 +363,7 @@ public class PoketmonAdminUI extends JFrame implements ActionListener {
 
 		panel_4 = new JPanel();
 		panel_15.add(panel_4);
-		panel_4.setBackground(new Color(255, 153, 0));
+		panel_4.setBackground(new Color(255, 153, 51));
 
 		btnNewButton_1 = new JButton("등록");
 		btnNewButton_1.addActionListener(this);
@@ -425,9 +419,11 @@ public class PoketmonAdminUI extends JFrame implements ActionListener {
 		}
 		if (jb == btnNewButton) {
 		}
+
 		repaint();
 	}
-	public ArrayList<String> init() { 
+
+	public ArrayList<String> init() {
 		String initUrl = "http://ko.pokemon.wikia.com/wiki/%EA%B5%AD%EA%B0%80%EB%B3%84_%ED%8F%AC%EC%BC%93%EB%AA%AC_%EC%9D%B4%EB%A6%84_%EB%AA%A9%EB%A1%9D";
 		Connection con = Jsoup.connect(initUrl);
 		Elements els = null;
@@ -438,8 +434,9 @@ public class PoketmonAdminUI extends JFrame implements ActionListener {
 			els = doc.select("a.mw-redirect");
 			for (Element ee : els) {
 				arr.add(ee.text());
-				count ++;
-				if(count==807)break;
+				count++;
+				if (count == 807)
+					break;
 			}
 
 		} catch (IOException e) {
