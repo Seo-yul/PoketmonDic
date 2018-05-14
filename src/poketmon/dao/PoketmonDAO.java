@@ -7,43 +7,83 @@ import poketmon.vo.Poketmon;
 
 public class PoketmonDAO {
 	private SqlSessionFactory factory = MybatisConfig.getResourceAsReader();
-
-	public boolean insertPoketmon(Poketmon p) {
-		boolean result = false;
+	
+	public boolean insertPoketmon(Poketmon poketmon) {
 		SqlSession session = null;
-
+		boolean result = false;
+		int cnt = 0;
 		try {
 			session = factory.openSession();
 			PoketmonMapper mapper = session.getMapper(PoketmonMapper.class);
-			if (mapper.insertPoketmon(p) > 0)
-				result = true;
+			cnt = mapper.insertPoketmon(poketmon);
+			session.commit();
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			if (session != null) {
-				session.commit();
-				session.close();
-			}
+			if (session != null) session.close();
+		}
+		if (cnt > 0) {
+			result = true;
 		}
 		return result;
 	}
-
-	public boolean updatePoketmon(Poketmon p) {
-		boolean result = false;
-
-		return result;
-	}
-
-	public boolean deletePoketmon(Poketmon p) {
-		boolean result = false;
-
-		return result;
-	}
-
-	public Poketmon findPoketmon(String ko_name) {
+	
+	public Poketmon findPoketmon(String name) {
+		SqlSession session = null;
 		Poketmon p = null;
-
+		
+		try {
+			session = factory.openSession();
+			PoketmonMapper mapper = session.getMapper(PoketmonMapper.class);
+			p = mapper.findPoketmon(name);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (session != null) session.close();
+		}
 		return p;
 	}
-
+	
+	public boolean updatePoketmon(Poketmon poketmon) {
+		SqlSession session = null;
+		boolean result = false;
+		int cnt = 0;
+		try {
+			session = factory.openSession();
+			PoketmonMapper mapper = session.getMapper(PoketmonMapper.class);
+			cnt = mapper.updatePoketmon(poketmon);
+			session.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (session != null) session.close();
+		}
+		
+		if (cnt > 0) {
+			result = true;
+		}
+		return result;
+	}
+	// 파라미터 수정
+	public boolean deletePoketmon(String no) {
+		SqlSession session = null;
+		boolean result = false;
+		int cnt = 0;
+		try {
+			session = factory.openSession();
+			PoketmonMapper mapper = session.getMapper(PoketmonMapper.class);
+			cnt = mapper.deletePoketmon(no);
+			session.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (session != null) session.close();
+		}
+		
+		if (cnt > 0) {
+			result = true;
+		}
+		return result;
+	}
 }
