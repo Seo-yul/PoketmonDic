@@ -7,8 +7,6 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Scanner;
-
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.jsoup.Connection;
@@ -36,6 +34,7 @@ public class PoketmonDAO {
 			for(Element e : els) {
 //			System.out.println(e.attr("src"));
 			imgUrl =e.attr("src");
+			i++;
 			if(i>1)break;
 			}
 			
@@ -193,14 +192,14 @@ public class PoketmonDAO {
 		return result;
 	}
 	// 파라미터 수정
-	public boolean deletePoketmon(String no) {
+	public boolean deletePoketmon(String kor_name) {
 		SqlSession session = null;
 		boolean result = false;
 		int cnt = 0;
 		try {
 			session = factory.openSession();
 			PoketmonMapper mapper = session.getMapper(PoketmonMapper.class);
-			cnt = mapper.deletePoketmon(no);
+			cnt = mapper.deletePoketmon(kor_name);
 			session.commit();
 		} catch (Exception e) {
 //			e.printStackTrace();
