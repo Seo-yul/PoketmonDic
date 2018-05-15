@@ -28,12 +28,15 @@ public class PoketmonDAO {
 		String imgUrl = null;
 		Connection con = Jsoup.connect(initUrl);
 		Elements els = null;
+		int i = 0;
+		
 		try {
 			Document doc = con.get();
 			els = doc.select("div.image.rounded a img");
 			for(Element e : els) {
 //			System.out.println(e.attr("src"));
 			imgUrl =e.attr("src");
+			if(i>1)break;
 			}
 			
 			URL url=new URL(imgUrl);
@@ -54,7 +57,7 @@ public class PoketmonDAO {
 			
 			  
 		} catch (IOException e) {
-			e.printStackTrace();
+//			e.printStackTrace();
 		} finally {
 			//
 		}
@@ -120,7 +123,7 @@ public class PoketmonDAO {
 			poketmon.setG_rate(list.get(8));
 			result=this.insertPoketmon(poketmon);
 		} catch (IOException e) {
-			System.out.println("없는 포켓몬입니다.");
+			System.out.println("위키겟실패");
 			return false;
 		} finally {
 			//
@@ -138,7 +141,9 @@ public class PoketmonDAO {
 			cnt = mapper.insertPoketmon(poketmon);
 			session.commit();
 		} catch (Exception e) {
-			e.printStackTrace();
+//			e.printStackTrace();
+			System.out.println("인설트실패");
+			return false;
 		} finally {
 			if (session != null) session.close();
 		}
@@ -175,7 +180,9 @@ public class PoketmonDAO {
 			cnt = mapper.updatePoketmon(poketmon);
 			session.commit();
 		} catch (Exception e) {
-			e.printStackTrace();
+//			e.printStackTrace();
+			System.out.println("업데이트실패");
+			return false;
 		} finally {
 			if (session != null) session.close();
 		}
@@ -196,7 +203,9 @@ public class PoketmonDAO {
 			cnt = mapper.deletePoketmon(no);
 			session.commit();
 		} catch (Exception e) {
-			e.printStackTrace();
+//			e.printStackTrace();
+			System.out.println("삭제실패");
+			return false;
 		} finally {
 			if (session != null) session.close();
 		}

@@ -30,7 +30,7 @@ public class Warning extends JFrame implements ActionListener {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Warning frame = new Warning();
+					Warning frame = new Warning("");
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -42,11 +42,11 @@ public class Warning extends JFrame implements ActionListener {
 	/**
 	 * Create the frame.
 	 */
-	public Warning() {
+	public Warning(String text) {
 		setResizable(false);
 		setTitle("Warning message!");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 250, 150);
+		setBounds(700, 400, 250, 150);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -60,7 +60,7 @@ public class Warning extends JFrame implements ActionListener {
 		panel.add(warn_panel);
 		warn_panel.setLayout(new BorderLayout(0, 0));
 		
-		lblNewLabel = new JLabel("검색결과가 없습니다!");
+		lblNewLabel = new JLabel(text);
 		lblNewLabel.setHorizontalTextPosition(SwingConstants.CENTER);
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		warn_panel.add(lblNewLabel);

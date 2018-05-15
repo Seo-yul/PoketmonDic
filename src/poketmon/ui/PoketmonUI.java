@@ -23,11 +23,7 @@ public class PoketmonUI {
 	private Poketmon poketmon = null;
 	public static void main(String[] args) {
 		PoketmonUI ui = new PoketmonUI();
-//		ui.init();
-//		ui.getWikidata("피카츄");
-//		ui.kanjiDic();
-//		ui.jp();
-//		ui.getWikiPhoto("이름입력?");
+		ui.init();
 	}
 	public void jp() { 
 		Scanner sc = new Scanner(System.in);
@@ -87,15 +83,17 @@ public class PoketmonUI {
 			//
 		}
 	}
-	/*public void init() { 
+	public ArrayList<String> init() { 
 		String initUrl = "http://ko.pokemon.wikia.com/wiki/%EA%B5%AD%EA%B0%80%EB%B3%84_%ED%8F%AC%EC%BC%93%EB%AA%AC_%EC%9D%B4%EB%A6%84_%EB%AA%A9%EB%A1%9D";
 		Connection con = Jsoup.connect(initUrl);
 		Elements els = null;
+		ArrayList<String> arr = new ArrayList<>();
 		int count = 0;
 		try {
 			Document doc = con.get();
 			els = doc.select("a.mw-redirect");
 			for (Element ee : els) {
+				arr.add(ee.text());
 				count ++;
 				if(count==807)break;
 			}
@@ -105,7 +103,8 @@ public class PoketmonUI {
 		} finally {
 			//
 		}
-	}*/
+		return arr;
+	}
 
 	
 	
