@@ -54,7 +54,7 @@ public class PoketmonDAO {
 			
 			  
 		} catch (IOException e) {
-			e.printStackTrace();
+//			e.printStackTrace();
 		} finally {
 			//
 		}
@@ -120,7 +120,7 @@ public class PoketmonDAO {
 			poketmon.setG_rate(list.get(8));
 			result=this.insertPoketmon(poketmon);
 		} catch (IOException e) {
-			e.printStackTrace();
+//			e.printStackTrace();
 		} finally {
 			//
 		}

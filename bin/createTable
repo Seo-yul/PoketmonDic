@@ -1,14 +1,14 @@
 CREATE TABLE poketmon (
-	No varchar2(30) primary key,
-	kor_name varchar2(30) not null,
-	jap_name varchar2(30) not null,
-	height varchar2(30) not null,
-	weight varchar2(30) not null,
+	No varchar2(50) primary key,
+	kor_name varchar2(50) not null,
+	jap_name varchar2(50) not null,
+	height varchar2(50) not null,
+	weight varchar2(50) not null,
 	c_rate number not null,
-	g_rate varchar2(30) not null,
-	type varchar2(30) not null,
-	sort varchar2(30) not null,
-	character varchar2(30) not null,
-	h_character varchar2(30) not null,
-	e_point varchar2(30) not null
+	g_rate varchar2(50) not null,
+	type varchar2(60) not null,
+	sort varchar2(50) not null,
+	character varchar2(50) not null,
+	h_character varchar2(50) not null,
+	e_point varchar2(50) not null
 );

@@ -74,7 +74,7 @@ public class PoketmonAdminUI extends JFrame implements ActionListener {
 	private JTextField lblNewLabel_17;
 	private JPanel panel_13;
 	private JPanel panel_14;
-	private JLabel lblNewLabel_18;
+	private JTextField lblNewLabel_18;
 	private JTextField lblNewLabel_19;
 	private JTextField lblNewLabel_20;
 	private JLabel lblNewLabel_21;
@@ -150,15 +150,16 @@ public class PoketmonAdminUI extends JFrame implements ActionListener {
 		panel_6.add(panel_13);
 		panel_13.setLayout(new GridLayout(2, 0, 0, 0));
 
-		lblNewLabel_18 = new JLabel("한국_이름");
+		lblNewLabel_18 = new JTextField("한국_이름");
+		lblNewLabel_18.setBackground(Color.ORANGE);
 		lblNewLabel_18.setBorder(new LineBorder(new Color(171, 173, 179)));
 		lblNewLabel_18.setForeground(new Color(25, 25, 112));
 		lblNewLabel_18.setFont(new Font("굴림", Font.BOLD, 25));
-		lblNewLabel_18.setHorizontalTextPosition(SwingConstants.CENTER);
 		lblNewLabel_18.setHorizontalAlignment(SwingConstants.CENTER);
 		panel_13.add(lblNewLabel_18);
 
 		lblNewLabel_19 = new JTextField("일본어_이름");
+		lblNewLabel_19.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_19.setBorder(new LineBorder(new Color(171, 173, 179)));
 		lblNewLabel_19.setBackground(Color.ORANGE);
 		lblNewLabel_19.setForeground(new Color(25, 25, 112));
@@ -388,13 +389,16 @@ public class PoketmonAdminUI extends JFrame implements ActionListener {
 
 		JButton jb = (JButton) e.getSource();
 		String getText = null;
+		boolean result = true;
+		
 		if (jb == btnNewButton) {
 			getText = textField.getText();
 			if (dao.findPoketmon(getText) == null) {
-				dao.getWikidata(getText);
-				dao.getWikiPhoto(getText);
+				result=dao.getWikidata(getText);
 
 			}
+			if(result) {
+			dao.getWikiPhoto(getText);
 			poketmon = dao.findPoketmon(getText);
 			lblNewLabel_20.setText(poketmon.getNo());
 			lblNewLabel_18.setText(poketmon.getKor_name());
@@ -411,39 +415,60 @@ public class PoketmonAdminUI extends JFrame implements ActionListener {
 			Icon icon = new ImageIcon("images\\" + getText + ".png");
 			lblNewLabel_21.setIcon(icon);
 			panel_7.add(lblNewLabel_21, BorderLayout.CENTER);
+			}else {
+				System.out.println("없습니다.");
+			}
 
 		}
-		if (jb == btnNewButton) {
+		if (jb == btnNewButton_1) {
+			poketmon.setNo(lblNewLabel_20.getText());
+			poketmon.setKor_name(lblNewLabel_18.getText());
+			poketmon.setJap_name(lblNewLabel_19.getText());
+			poketmon.setHeight(lblNewLabel_2.getText());
+			poketmon.setWeight(lblNewLabel_3.getText());
+			poketmon.setC_rate(Integer.parseInt(lblNewLabel_6.getText()));
+			poketmon.setG_rate(lblNewLabel_7.getText());
+			poketmon.setType(lblNewLabel_10.getText());
+			poketmon.setSort(lblNewLabel_11.getText());
+			poketmon.setCharacter(lblNewLabel_14.getText());
+			poketmon.setH_character(lblNewLabel_15.getText());
+			poketmon.setE_point(lblNewLabel_17.getText());
+			dao.insertPoketmon(poketmon);
 		}
-		if (jb == btnNewButton) {
+		if (jb == btnNewButton_2) {
+			poketmon.setNo(lblNewLabel_20.getText());
+			poketmon.setKor_name(lblNewLabel_18.getText());
+			poketmon.setJap_name(lblNewLabel_19.getText());
+			poketmon.setHeight(lblNewLabel_2.getText());
+			poketmon.setWeight(lblNewLabel_3.getText());
+			poketmon.setC_rate(Integer.parseInt(lblNewLabel_6.getText()));
+			poketmon.setG_rate(lblNewLabel_7.getText());
+			poketmon.setType(lblNewLabel_10.getText());
+			poketmon.setSort(lblNewLabel_11.getText());
+			poketmon.setCharacter(lblNewLabel_14.getText());
+			poketmon.setH_character(lblNewLabel_15.getText());
+			poketmon.setE_point(lblNewLabel_17.getText());
+			dao.updatePoketmon(poketmon);
+			
 		}
-		if (jb == btnNewButton) {
+		if (jb == btnNewButton_3) {
+			
+			lblNewLabel_20.setText("");
+			lblNewLabel_18.setText("");
+			lblNewLabel_19.setText("");
+			lblNewLabel_2.setText("");
+			lblNewLabel_3.setText("");
+			lblNewLabel_6.setText("");
+			lblNewLabel_7.setText("");
+			lblNewLabel_10.setText("");
+			lblNewLabel_11.setText("");
+			lblNewLabel_14.setText("");
+			lblNewLabel_15.setText("");
+			lblNewLabel_17.setText("");
+			dao.deletePoketmon(lblNewLabel_18.getText());
 		}
 
 		repaint();
 	}
 
-	public ArrayList<String> init() {
-		String initUrl = "http://ko.pokemon.wikia.com/wiki/%EA%B5%AD%EA%B0%80%EB%B3%84_%ED%8F%AC%EC%BC%93%EB%AA%AC_%EC%9D%B4%EB%A6%84_%EB%AA%A9%EB%A1%9D";
-		Connection con = Jsoup.connect(initUrl);
-		Elements els = null;
-		ArrayList<String> arr = new ArrayList<>();
-		int count = 0;
-		try {
-			Document doc = con.get();
-			els = doc.select("a.mw-redirect");
-			for (Element ee : els) {
-				arr.add(ee.text());
-				count++;
-				if (count == 807)
-					break;
-			}
-
-		} catch (IOException e) {
-			e.printStackTrace();
-		} finally {
-			//
-		}
-		return arr;
-	}
 }
