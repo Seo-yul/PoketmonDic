@@ -125,14 +125,16 @@ public class PoketmonUserUI extends JFrame implements ActionListener {
 		setTitle("Poketmon");
 		setBackground(Color.WHITE);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
+		Toolkit kit = Toolkit.getDefaultToolkit();
+		/*Dimension screenSize = kit.getScreenSize();
+		setBounds(screenSize.width / 2  - this.getWidth()/2, screenSize.height / 2 - this.getHeight()/2, 650, 500);*/
 		setBounds(100, 100, 650, 500);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.ORANGE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
-		Toolkit kit = Toolkit.getDefaultToolkit();
+		
 		Image img = kit.getImage("poketmon.png");
 		setIconImage(img);
 		
@@ -532,12 +534,17 @@ public class PoketmonUserUI extends JFrame implements ActionListener {
 
 	public void actionPerformed(ActionEvent e) {
 		String name = null;
+		
 		if(e.getActionCommand() == insert_btn.getActionCommand()) {
 			name = insert_tf.getText();
 			if (dao.findPoketmon(name) == null) {
 				dao.getWikidata(name);
 				dao.getWikiPhoto(name);
 			} 
+			
+			
+				
+			
 			
 			num_lbl.setText(dao.findPoketmon(name).getNo());
 			ko_name_lbl.setText(dao.findPoketmon(name).getKor_name());
@@ -553,6 +560,8 @@ public class PoketmonUserUI extends JFrame implements ActionListener {
 			ev_lbl.setText(dao.findPoketmon(name).getE_point());
 			Icon icon =new ImageIcon("images\\"+name+".png");
 			image_lbl.setIcon(icon);
+			
+			
 		}
 		
 		this.repaint();
