@@ -535,11 +535,9 @@ public class PoketmonUserUI extends JFrame implements ActionListener {
 
 
 	public void actionPerformed(ActionEvent e) {
-		String name = null;
-		
 		if(e.getActionCommand() == insert_btn.getActionCommand()) {
 			boolean result = true;
-			name = insert_tf.getText();
+			String name = insert_tf.getText();
 			if (dao.findPoketmon(name) == null) {
 				result = dao.getWikidata(name);
 			} 

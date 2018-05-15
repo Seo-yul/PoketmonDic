@@ -153,14 +153,14 @@ public class PoketmonDAO {
 		return result;
 	}
 	
-	public Poketmon findPoketmon(String name) {
+	public Poketmon findPoketmon(String kor_name) {
 		SqlSession session = null;
 		Poketmon p = null;
 		
 		try {
 			session = factory.openSession();
 			PoketmonMapper mapper = session.getMapper(PoketmonMapper.class);
-			p = mapper.findPoketmon(name);
+			p = mapper.findPoketmon(kor_name);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
