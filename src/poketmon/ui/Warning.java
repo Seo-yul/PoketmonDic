@@ -11,6 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
 import java.awt.GridLayout;
+import java.awt.Toolkit;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -44,9 +45,14 @@ public class Warning extends JFrame implements ActionListener {
 	 */
 	public Warning(String text) {
 		setResizable(false);
+		
+		Toolkit kit = Toolkit.getDefaultToolkit();
+		Dimension screenSize = kit.getScreenSize();
+		setBounds(screenSize.width / 2  - 250/2, screenSize.height / 2 - 150/2, 250, 150);
+		
 		setTitle("Warning message!");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(700, 400, 250, 150);
+		//setBounds(700, 400, 250, 150);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));

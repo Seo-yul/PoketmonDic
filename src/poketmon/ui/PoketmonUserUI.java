@@ -126,9 +126,9 @@ public class PoketmonUserUI extends JFrame implements ActionListener {
 		setBackground(Color.WHITE);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Toolkit kit = Toolkit.getDefaultToolkit();
-		/*Dimension screenSize = kit.getScreenSize();
-		setBounds(screenSize.width / 2  - this.getWidth()/2, screenSize.height / 2 - this.getHeight()/2, 650, 500);*/
-		setBounds(100, 100, 650, 500);
+		Dimension screenSize = kit.getScreenSize();
+		setBounds(screenSize.width / 2  - 800/2, screenSize.height / 2 - 500/2, 800, 500);
+		
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.ORANGE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -145,10 +145,11 @@ public class PoketmonUserUI extends JFrame implements ActionListener {
 		insert_panel = new JPanel();
 		FlowLayout flowLayout = (FlowLayout) insert_panel.getLayout();
 		insert_panel.setBackground(new Color(255, 165, 0));
-		insert_panel.setPreferredSize(new Dimension(500, 40));
+		insert_panel.setPreferredSize(new Dimension(700, 40));
 		find_panel.add(insert_panel);
 		
-		insert_tf = new JTextField(25);
+		insert_tf = new JTextField(50);
+		insert_tf.setPreferredSize(new Dimension(300, 30));
 		insert_tf.setFont(new Font("SansSerif", insert_tf.getFont().getStyle(), 17));
 		insert_panel.add(insert_tf);
 		
@@ -168,7 +169,7 @@ public class PoketmonUserUI extends JFrame implements ActionListener {
 		
 		left_panel = new JPanel();
 		contentPane.add(left_panel, BorderLayout.WEST);
-		left_panel.setPreferredSize(new Dimension(300, 300));
+		left_panel.setPreferredSize(new Dimension(340, 300));
 		left_panel.setLayout(new BorderLayout(0, 0));
 		
 		basic_panel = new JPanel();
@@ -205,7 +206,7 @@ public class PoketmonUserUI extends JFrame implements ActionListener {
 		jp_name_panel.setLayout(new BorderLayout(0, 0));
 		
 		jp_name_lbl = new JLabel("일본이름");
-		jp_name_lbl.setFont(new Font("맑은 고딕", Font.BOLD, 20));
+		jp_name_lbl.setFont(new Font("Arial Unicode MS", Font.BOLD, 15));
 		jp_name_lbl.setBorder(new LineBorder(Color.WHITE, 1, true));
 		jp_name_lbl.setHorizontalAlignment(SwingConstants.CENTER);
 		jp_name_lbl.setHorizontalTextPosition(SwingConstants.CENTER);
@@ -230,6 +231,7 @@ public class PoketmonUserUI extends JFrame implements ActionListener {
 		panel.add(num_lbl);
 		
 		image_panel = new JPanel();
+		
 		image_panel.setBackground(Color.WHITE);
 		left_panel.add(image_panel);
 		image_panel.setLayout(new BorderLayout(0, 0));
@@ -243,7 +245,7 @@ public class PoketmonUserUI extends JFrame implements ActionListener {
 		right_panel = new JPanel();
 		right_panel.setBorder(new LineBorder(Color.ORANGE, 1, true));
 		right_panel.setBackground(new Color(255, 200, 0));
-		right_panel.setPreferredSize(new Dimension(320, 280));
+		right_panel.setPreferredSize(new Dimension(430, 280));
 		contentPane.add(right_panel, BorderLayout.EAST);
 		right_panel.setLayout(new BorderLayout(0, 0));
 		
@@ -536,16 +538,14 @@ public class PoketmonUserUI extends JFrame implements ActionListener {
 		String name = null;
 		
 		if(e.getActionCommand() == insert_btn.getActionCommand()) {
+			boolean result = true;
 			name = insert_tf.getText();
 			if (dao.findPoketmon(name) == null) {
-				dao.getWikidata(name);
-				dao.getWikiPhoto(name);
+				result = dao.getWikidata(name);
 			} 
 			
-			
-				
-			
-			
+			if (result) {
+			dao.getWikiPhoto(name);
 			num_lbl.setText(dao.findPoketmon(name).getNo());
 			ko_name_lbl.setText(dao.findPoketmon(name).getKor_name());
 			jp_name_lbl.setText(dao.findPoketmon(name).getJap_name());
@@ -560,8 +560,12 @@ public class PoketmonUserUI extends JFrame implements ActionListener {
 			ev_lbl.setText(dao.findPoketmon(name).getE_point());
 			Icon icon =new ImageIcon("images\\"+name+".png");
 			image_lbl.setIcon(icon);
+			}
 			
-			
+			if (!result) {
+				Warning w = new Warning("찾는 포켓몬이 없습니다!");
+				w.setVisible(true);
+			}
 		}
 		
 		this.repaint();
