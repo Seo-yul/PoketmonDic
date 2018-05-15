@@ -35,6 +35,7 @@ public class PoketmonDAO {
 			for(Element e : els) {
 //			System.out.println(e.attr("src"));
 			imgUrl =e.attr("src");
+			i++;
 			if(i>1)break;
 			}
 			
