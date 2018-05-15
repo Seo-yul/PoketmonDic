@@ -192,14 +192,14 @@ public class PoketmonDAO {
 		return result;
 	}
 	// 파라미터 수정
-	public boolean deletePoketmon(String no) {
+	public boolean deletePoketmon(String kor_name) {
 		SqlSession session = null;
 		boolean result = false;
 		int cnt = 0;
 		try {
 			session = factory.openSession();
 			PoketmonMapper mapper = session.getMapper(PoketmonMapper.class);
-			cnt = mapper.deletePoketmon(no);
+			cnt = mapper.deletePoketmon(kor_name);
 			session.commit();
 		} catch (Exception e) {
 //			e.printStackTrace();
