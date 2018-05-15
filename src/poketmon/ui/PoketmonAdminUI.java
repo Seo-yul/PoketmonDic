@@ -10,12 +10,19 @@ import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
 
+import javax.imageio.stream.FileImageInputStream;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -78,11 +85,12 @@ public class PoketmonAdminUI extends JFrame implements ActionListener {
 	private JTextField lblNewLabel_19;
 	private JTextField lblNewLabel_20;
 	private JLabel lblNewLabel_21;
-	private JTextField textField_1;
 	private PoketmonDAO dao = new PoketmonDAO();
 	private Poketmon poketmon = new Poketmon();
 	private JPanel panel_5;
 	private JPanel panel_15;
+	ArrayList<String> arr = new ArrayList<>();
+	private JButton btnNewButton_4;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -186,7 +194,7 @@ public class PoketmonAdminUI extends JFrame implements ActionListener {
 		panel_7.setBackground(Color.WHITE);
 		panel_1.add(panel_7, BorderLayout.CENTER);
 		panel_7.setLayout(new BorderLayout(0, 0));
-		lblNewLabel_21 = new JLabel(new ImageIcon("images\\.png"));
+		lblNewLabel_21 = new JLabel(new ImageIcon("logo.jpg"));
 		lblNewLabel_21.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_21.setHorizontalTextPosition(SwingConstants.CENTER);
 		panel_7.add(lblNewLabel_21, BorderLayout.CENTER);
@@ -276,13 +284,12 @@ public class PoketmonAdminUI extends JFrame implements ActionListener {
 		panel_3.add(panel_10);
 		panel_10.setLayout(new GridLayout(2, 2, 0, 0));
 		
-
-		lblNewLabel_8 = new JLabel("타입");
-		lblNewLabel_8.setBackground(Color.ORANGE);
-		lblNewLabel_8.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_8.setHorizontalTextPosition(SwingConstants.CENTER);
-		lblNewLabel_8.setBorder(new LineBorder(Color.LIGHT_GRAY, 1, true));
-		panel_10.add(lblNewLabel_8);
+				lblNewLabel_16 = new JLabel("Lv.100 경험치량");
+				panel_10.add(lblNewLabel_16);
+				lblNewLabel_16.setBackground(Color.ORANGE);
+				lblNewLabel_16.setHorizontalAlignment(SwingConstants.CENTER);
+				lblNewLabel_16.setHorizontalTextPosition(SwingConstants.CENTER);
+				lblNewLabel_16.setBorder(new LineBorder(Color.LIGHT_GRAY, 1, true));
 
 		lblNewLabel_9 = new JLabel("분류");
 		lblNewLabel_9.setBackground(Color.ORANGE);
@@ -291,13 +298,12 @@ public class PoketmonAdminUI extends JFrame implements ActionListener {
 		lblNewLabel_9.setBorder(new LineBorder(Color.LIGHT_GRAY, 1, true));
 		panel_10.add(lblNewLabel_9);
 		
-
-		lblNewLabel_10 = new JTextField();
-		lblNewLabel_10.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_10.setBorder(new LineBorder(Color.LIGHT_GRAY, 1, true));
-		lblNewLabel_10.setBackground(Color.WHITE);
-		lblNewLabel_10.setColumns(10);
-		panel_10.add(lblNewLabel_10);
+				lblNewLabel_17 = new JTextField();
+				panel_10.add(lblNewLabel_17);
+				lblNewLabel_17.setHorizontalAlignment(SwingConstants.CENTER);
+				lblNewLabel_17.setBorder(new LineBorder(Color.LIGHT_GRAY, 1, true));
+				lblNewLabel_17.setBackground(Color.WHITE);
+				lblNewLabel_17.setColumns(10);
 
 		lblNewLabel_11 = new JTextField();
 		lblNewLabel_11.setHorizontalAlignment(SwingConstants.CENTER);
@@ -346,20 +352,19 @@ public class PoketmonAdminUI extends JFrame implements ActionListener {
 		panel_3.add(panel_12);
 		panel_12.setLayout(new GridLayout(2, 0, 0, 0));
 		
-
-		lblNewLabel_16 = new JLabel("Lv.100 경험치량");
-		lblNewLabel_16.setBackground(Color.ORANGE);
-		lblNewLabel_16.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_16.setHorizontalTextPosition(SwingConstants.CENTER);
-		lblNewLabel_16.setBorder(new LineBorder(Color.LIGHT_GRAY, 1, true));
-		panel_12.add(lblNewLabel_16);
-
-		lblNewLabel_17 = new JTextField();
-		lblNewLabel_17.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_17.setBorder(new LineBorder(Color.LIGHT_GRAY, 1, true));
-		lblNewLabel_17.setBackground(Color.WHITE);
-		lblNewLabel_17.setColumns(10);
-		panel_12.add(lblNewLabel_17);
+				lblNewLabel_8 = new JLabel("타입");
+				panel_12.add(lblNewLabel_8);
+				lblNewLabel_8.setBackground(Color.ORANGE);
+				lblNewLabel_8.setHorizontalAlignment(SwingConstants.CENTER);
+				lblNewLabel_8.setHorizontalTextPosition(SwingConstants.CENTER);
+				lblNewLabel_8.setBorder(new LineBorder(Color.LIGHT_GRAY, 1, true));
+				
+						lblNewLabel_10 = new JTextField();
+						panel_12.add(lblNewLabel_10);
+						lblNewLabel_10.setHorizontalAlignment(SwingConstants.CENTER);
+						lblNewLabel_10.setBorder(new LineBorder(Color.LIGHT_GRAY, 1, true));
+						lblNewLabel_10.setBackground(Color.WHITE);
+						lblNewLabel_10.setColumns(10);
 
 		panel_15 = new JPanel();
 		panel_15.setBackground(Color.ORANGE);
@@ -371,6 +376,11 @@ public class PoketmonAdminUI extends JFrame implements ActionListener {
 
 		btnNewButton_1 = new JButton("등록");
 		btnNewButton_1.addActionListener(this);
+
+		btnNewButton_4 = new JButton("사진등록");
+		btnNewButton_4.setBackground(Color.ORANGE);
+		btnNewButton_4.addActionListener(this);
+		panel_4.add(btnNewButton_4);
 		btnNewButton_1.setBackground(Color.ORANGE);
 		btnNewButton_1.setMargin(new Insets(2, 20, 2, 20));
 		panel_4.add(btnNewButton_1);
@@ -391,41 +401,40 @@ public class PoketmonAdminUI extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 
 		JButton jb = (JButton) e.getSource();
-		String getText = null;
+		String getText = textField.getText();
 		boolean result = true;
-		
-		if(jb==btnNewButton) {
-			getText = textField.getText();
-			if(dao.findPoketmon(getText)==null) {
-				result=dao.getWikidata(getText);
-			}
-			if(result) {
-				dao.getWikiPhoto(getText);
-				poketmon = dao.findPoketmon(getText);
-				lblNewLabel_20.setText(poketmon.getNo());
-				lblNewLabel_18.setText(poketmon.getKor_name());
-				lblNewLabel_19.setText(poketmon.getJap_name());
-				lblNewLabel_2.setText(poketmon.getHeight());
-				lblNewLabel_3.setText(poketmon.getWeight());
-				lblNewLabel_6.setText(""+poketmon.getC_rate());
-				lblNewLabel_7.setText(poketmon.getG_rate());
-				lblNewLabel_10.setText(poketmon.getType());
-				lblNewLabel_11.setText(poketmon.getSort());
-				lblNewLabel_14.setText(poketmon.getCharacter());
-				lblNewLabel_15.setText(poketmon.getH_character());
-				lblNewLabel_17.setText(poketmon.getE_point());
-				Icon icon =new ImageIcon("images\\"+getText+".png");
-				lblNewLabel_21.setIcon(icon);
-				panel_7.add(lblNewLabel_21, BorderLayout.CENTER);
-				
-			}
-			if(!result) {
-				//경고창
-				Warning w = new Warning("존재하지 않습니다!");
-				w.setVisible(true);
-			}
-		}
-		
+
+		if (jb == btnNewButton) {
+				if (dao.findPoketmon(getText) == null) {
+					result = dao.getWikidata(getText);
+				}
+					if (result) {
+						dao.getWikiPhoto(getText);
+						poketmon = dao.findPoketmon(getText);
+						lblNewLabel_20.setText(poketmon.getNo());
+						lblNewLabel_18.setText(poketmon.getKor_name());
+						lblNewLabel_19.setText(poketmon.getJap_name());
+						lblNewLabel_2.setText(poketmon.getHeight());
+						lblNewLabel_3.setText(poketmon.getWeight());
+						lblNewLabel_6.setText("" + poketmon.getC_rate());
+						lblNewLabel_7.setText(poketmon.getG_rate());
+						lblNewLabel_10.setText(poketmon.getType());
+						lblNewLabel_11.setText(poketmon.getSort());
+						lblNewLabel_14.setText(poketmon.getCharacter());
+						lblNewLabel_15.setText(poketmon.getH_character());
+						lblNewLabel_17.setText(poketmon.getE_point());
+						Icon icon = new ImageIcon("images\\" + getText + ".png");
+						lblNewLabel_21.setIcon(icon);
+						repaint();
+					}
+					if (!result) {
+						// 경고창
+						Warning w = new Warning("존재하지 않습니다!");
+						w.setVisible(true);
+					}
+				}
+
+
 		if (jb == btnNewButton_1) {
 			poketmon.setNo(lblNewLabel_20.getText());
 			poketmon.setKor_name(lblNewLabel_18.getText());
@@ -439,9 +448,9 @@ public class PoketmonAdminUI extends JFrame implements ActionListener {
 			poketmon.setCharacter(lblNewLabel_14.getText());
 			poketmon.setH_character(lblNewLabel_15.getText());
 			poketmon.setE_point(lblNewLabel_17.getText());
-			result=dao.insertPoketmon(poketmon);
-			if(!result) {
-				//경고창
+			result = dao.insertPoketmon(poketmon);
+			if (!result) {
+				// 경고창
 				Warning w = new Warning("등록할 수 없습니다.");
 				w.setVisible(true);
 			}
@@ -459,16 +468,16 @@ public class PoketmonAdminUI extends JFrame implements ActionListener {
 			poketmon.setCharacter(lblNewLabel_14.getText());
 			poketmon.setH_character(lblNewLabel_15.getText());
 			poketmon.setE_point(lblNewLabel_17.getText());
-			result=dao.updatePoketmon(poketmon);
-			if(!result) {
-				//경고창
+			result = dao.updatePoketmon(poketmon);
+			if (!result) {
+				// 경고창
 				Warning w = new Warning("수정할 수 없습니다.");
 				w.setVisible(true);
 			}
-			
+
 		}
 		if (jb == btnNewButton_3) {
-			
+
 			lblNewLabel_20.setText("");
 			lblNewLabel_18.setText("");
 			lblNewLabel_19.setText("");
@@ -483,8 +492,61 @@ public class PoketmonAdminUI extends JFrame implements ActionListener {
 			lblNewLabel_17.setText("");
 			dao.deletePoketmon(lblNewLabel_18.getText());
 		}
+		if (jb == btnNewButton_4) {
+			 JFileChooser fc = new JFileChooser();
+	         fc.showOpenDialog(this);
+	         File ofile = fc.getSelectedFile();
+	         try {
+				FileImageInputStream fis = new FileImageInputStream(ofile);
+			    File sfile = new File("images\\"+fc.getSelectedFile().getName());
+			    OutputStream os = new FileOutputStream(sfile);
+			    byte[] b = new byte[2048];
+			    int length =0;
+
+			    while ((length = fis.read(b)) != -1) {
+			        os.write(b, 0, length);
+			    }
+
+			    fis.close();
+			    os.close();
+			    Icon icon = new ImageIcon("images\\"+fc.getSelectedFile().getName());
+				lblNewLabel_21.setIcon(icon);
+				
+			} catch (FileNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+	         
+		}
 
 		repaint();
+	}
+
+	public ArrayList<String> init() {
+		String initUrl = "http://ko.pokemon.wikia.com/wiki/%EA%B5%AD%EA%B0%80%EB%B3%84_%ED%8F%AC%EC%BC%93%EB%AA%AC_%EC%9D%B4%EB%A6%84_%EB%AA%A9%EB%A1%9D";
+		Connection con = Jsoup.connect(initUrl);
+		Elements els = null;
+		ArrayList<String> arr = new ArrayList<>();
+		int count = 0;
+		try {
+			Document doc = con.get();
+			els = doc.select("a.mw-redirect");
+			for (Element ee : els) {
+				arr.add(ee.text());
+				count++;
+				if (count == 807)
+					break;
+			}
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			//
+		}
+		return arr;
 	}
 
 }

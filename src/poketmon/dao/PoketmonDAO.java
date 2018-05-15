@@ -80,8 +80,8 @@ public class PoketmonDAO {
 			els.size();
 			System.out.print(doc.selectFirst("strong.rounded").text()+ " ");
 			System.out.print(doc.selectFirst(".name-ko strong").text()+ " ");
-			System.out.println(doc.selectFirst(".name-ja span").text());
-			
+			System.out.print(doc.selectFirst(".name-ja span").text());
+			System.out.println("정보 다운");
 			for (Element ee : els) {
 				if(flag)
 					if(ee.text().contains("m")) {
@@ -122,7 +122,7 @@ public class PoketmonDAO {
 			
 			poketmon.setG_rate(list.get(8));
 			result=this.insertPoketmon(poketmon);
-		} catch (IOException e) {
+		} catch (Exception e) {
 			System.out.println("위키겟실패");
 			return false;
 		} finally {
