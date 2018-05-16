@@ -15,11 +15,13 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import poketmon.vo.Manager;
 import poketmon.vo.Poketmon;
 
 public class PoketmonDAO {
 	private SqlSessionFactory factory = MybatisConfig.getResourceAsReader();
 	private Poketmon poketmon = null;
+	private Manager m = null;
 	
 	public void getWikiPhoto(String name) { 
 		String initUrl = "http://ko.pokemon.wikia.com/wiki/"+name;
@@ -214,4 +216,26 @@ public class PoketmonDAO {
 		}
 		return result;
 	}
+	
+	public Manager checkPassword(String name) {
+		SqlSession session = null;
+		m = null;
+		
+		try {
+			session = factory.openSession();
+			PoketmonMapper mapper = session.getMapper(PoketmonMapper.class);
+			m = mapper.checkPassword(name);
+		} catch (Exception e) {
+			//e.printStackTrace();
+			if (m == null) {
+				return null;
+			}
+		} finally {
+			if (session != null) session.close();
+		}
+		
+		return m;
+	}
+	
+	
 }

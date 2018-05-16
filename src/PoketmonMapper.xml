@@ -24,5 +24,8 @@
 		DELETE POKETMON WHERE KOR_NAME=#{kor_name}
 	</delete> 
 	
-	 
+	 <select id="checkPassword" parameterType="String" resultType="Manager">
+	 	SELECT NO, NAME, PWD FROM MANAGER WHERE NAME=#{name}
+	 </select>
 </mapper>
+

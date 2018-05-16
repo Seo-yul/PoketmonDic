@@ -9,16 +9,23 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
 import java.awt.GridLayout;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.FlowLayout;
+import javax.swing.JLabel;
+import javax.swing.ImageIcon;
+import java.awt.Font;
+import java.awt.Color;
+import javax.swing.border.BevelBorder;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
-public class MainUI extends JFrame {
+public class MainUI extends JFrame implements ActionListener {
 
 	private JPanel contentPane;
-	private JPanel panel;
-	private JPanel panel_1;
-	private JPanel panel_2;
-	private JButton btnNewButton;
-	private JButton btnNewButton_1;
+	private JLabel lblNewLabel;
+	private JButton usermode;
+	private JButton managermode;
 
 	/**
 	 * Launch the application.
@@ -40,35 +47,53 @@ public class MainUI extends JFrame {
 	 * Create the frame.
 	 */
 	public MainUI() {
+		Toolkit kit = Toolkit.getDefaultToolkit();
+		Dimension screenSize = kit.getScreenSize();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(screenSize.width / 2  - 640/2, screenSize.height / 2 - 370/2, 640, 370);
 		setTitle("Let's go Poketmon!");
+		Image img = kit.getImage("poketmon.png");
+		setIconImage(img);
 		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		setResizable(false);
+		usermode = new JButton("사용자 모드");
+		usermode.addActionListener(this);
+		usermode.setBorder(new BevelBorder(BevelBorder.RAISED, new Color(255, 215, 0), null, null, null));
+		usermode.setBackground(Color.ORANGE);
+		usermode.setFont(new Font("HY나무B", Font.BOLD, 23));
+		usermode.setBounds(212, 100, 211, 60);
+		contentPane.add(usermode);
 		
-		panel = new JPanel();
-		contentPane.add(panel, BorderLayout.CENTER);
-		panel.setLayout(new GridLayout(0, 1, 0, 0));
+		managermode = new JButton("관리자 모드");
+		managermode.addActionListener(this);
+		managermode.setBorder(new BevelBorder(BevelBorder.RAISED, new Color(255, 215, 0), null, null, null));
+		managermode.setBackground(Color.ORANGE);
+		managermode.setFont(new Font("HY나무B", Font.BOLD, 23));
+		managermode.setBounds(212, 229, 211, 60);
+		contentPane.add(managermode);
 		
-		panel_1 = new JPanel();
-		panel.add(panel_1);
-		panel_1.setLayout(null);
-		
-		btnNewButton = new JButton("사용자 모드");
-		btnNewButton.setBounds(136, 25, 150, 80);
-		
-		panel_1.add(btnNewButton);
-		
-		panel_2 = new JPanel();
-		panel.add(panel_2);
-		panel_2.setLayout(null);
-		
-		btnNewButton_1 = new JButton("관리자 모드");
-		btnNewButton_1.setBounds(137, 22, 150, 80);
-		panel_2.add(btnNewButton_1);
+		lblNewLabel = new JLabel("");
+		lblNewLabel.setBounds(0,-11, 650,370 );
+	
+		lblNewLabel.setIcon(new ImageIcon(MainUI.class.getResource("/pokemon-1.jpg")));
+		contentPane.add(lblNewLabel);
 		
 		
+		
+	}
+	
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == usermode) {
+			PoketmonUserUI ui1 = new PoketmonUserUI();
+			ui1.setVisible(true);
+			dispose();
+		} 
+		
+		if (e.getSource() == managermode) {
+			LoginUI ui2 = new LoginUI();
+			ui2.setVisible(true);
+		}
 	}
 }

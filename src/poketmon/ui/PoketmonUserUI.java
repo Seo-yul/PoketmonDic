@@ -103,6 +103,7 @@ public class PoketmonUserUI extends JFrame implements ActionListener {
 	private JLabel hch_lbl;
 	private JLabel hchv_lbl;
 	private PoketmonDAO dao = new PoketmonDAO();
+	private JButton main_btn;
 	
 	/**
 	 * Launch the application.
@@ -142,19 +143,25 @@ public class PoketmonUserUI extends JFrame implements ActionListener {
 		find_panel.setBackground(Color.ORANGE);
 		contentPane.add(find_panel, BorderLayout.NORTH);
 		
+		main_btn = new JButton("Main");
+		main_btn.addActionListener(this);
+		main_btn.setPreferredSize(new Dimension(60, 40));
+		main_btn.setBorder(new LineBorder(new Color(147, 112, 219), 1, true));
+		find_panel.add(main_btn);
+		main_btn.setBackground(new Color(147, 112, 219));
+		main_btn.setFont(new Font("맑은 고딕", Font.BOLD, 16));
+		
 		insert_panel = new JPanel();
 		FlowLayout flowLayout = (FlowLayout) insert_panel.getLayout();
 		insert_panel.setBackground(new Color(255, 165, 0));
-		insert_panel.setPreferredSize(new Dimension(700, 40));
+		insert_panel.setPreferredSize(new Dimension(600, 40));
 		find_panel.add(insert_panel);
 		
-		insert_tf = new JTextField(50);
-		insert_tf.setPreferredSize(new Dimension(300, 30));
+		insert_tf = new JTextField(43);
+		insert_tf.setPreferredSize(new Dimension(200, 30));
 		insert_tf.setFont(new Font("SansSerif", insert_tf.getFont().getStyle(), 17));
 		insert_panel.add(insert_tf);
 		
-		//insert_tf.setColumns(10);
-		//insert_tf.setPreferredSize(new Dimension(50, 20));
 		insert_btn = new JButton("검색");
 		insert_btn.setFont(new Font("맑은 고딕", Font.BOLD, 16));
 		insert_btn.addActionListener(this);
@@ -186,12 +193,11 @@ public class PoketmonUserUI extends JFrame implements ActionListener {
 		
 		ko_name_panel = new JPanel();
 		ko_name_panel.setBorder(new LineBorder(Color.WHITE, 1, true));
-		//ko_name_panel.setPreferredSize(new Dimension(80, 40));
 		ko_name_panel.setBackground(Color.ORANGE);
 		name_panel.add(ko_name_panel);
 		ko_name_panel.setLayout(new BorderLayout(0, 0));
 		
-		ko_name_lbl = new JLabel("한국이름");
+		ko_name_lbl = new JLabel("???");
 		ko_name_lbl.setFont(new Font("맑은 고딕", Font.BOLD, 20));
 		ko_name_lbl.setBorder(new LineBorder(Color.WHITE, 1, true));
 		ko_name_lbl.setPreferredSize(new Dimension(30, 30));
@@ -205,7 +211,7 @@ public class PoketmonUserUI extends JFrame implements ActionListener {
 		name_panel.add(jp_name_panel);
 		jp_name_panel.setLayout(new BorderLayout(0, 0));
 		
-		jp_name_lbl = new JLabel("일본이름");
+		jp_name_lbl = new JLabel("???");
 		jp_name_lbl.setFont(new Font("Arial Unicode MS", Font.BOLD, 15));
 		jp_name_lbl.setBorder(new LineBorder(Color.WHITE, 1, true));
 		jp_name_lbl.setHorizontalAlignment(SwingConstants.CENTER);
@@ -213,7 +219,6 @@ public class PoketmonUserUI extends JFrame implements ActionListener {
 		jp_name_panel.add(jp_name_lbl);
 		
 		num_panel = new JPanel();
-		//num_panel.setPreferredSize(new Dimension(80, 80));
 		num_panel.setBackground(Color.ORANGE);
 		basic_panel.add(num_panel);
 		num_panel.setLayout(new BorderLayout(0, 0));
@@ -223,7 +228,7 @@ public class PoketmonUserUI extends JFrame implements ActionListener {
 		num_panel.add(panel, BorderLayout.CENTER);
 		panel.setLayout(new BorderLayout(0, 0));
 		
-		num_lbl = new JLabel("No. 000");
+		num_lbl = new JLabel("No. ???");
 		num_lbl.setFont(new Font("맑은 고딕", Font.BOLD, 20));
 		num_lbl.setBorder(new LineBorder(SystemColor.controlHighlight, 1, true));
 		num_lbl.setHorizontalTextPosition(SwingConstants.CENTER);
@@ -236,7 +241,7 @@ public class PoketmonUserUI extends JFrame implements ActionListener {
 		left_panel.add(image_panel);
 		image_panel.setLayout(new BorderLayout(0, 0));
 		
-		image_lbl = new JLabel("");
+		image_lbl = new JLabel(new ImageIcon("poketlogo.png"));
 		image_lbl.setBorder(new LineBorder(Color.WHITE, 1, true));
 		image_lbl.setHorizontalTextPosition(SwingConstants.CENTER);
 		image_lbl.setHorizontalAlignment(SwingConstants.CENTER);
@@ -538,8 +543,11 @@ public class PoketmonUserUI extends JFrame implements ActionListener {
 		if(e.getActionCommand() == insert_btn.getActionCommand()) {
 			boolean result = true;
 			String name = insert_tf.getText();
+			
+			
 			if (dao.findPoketmon(name) == null) {
-				result = dao.getWikidata(name);
+				//result = dao.getWikidata(name);
+				result = false;
 			} 
 			
 			if (result) {
@@ -564,6 +572,13 @@ public class PoketmonUserUI extends JFrame implements ActionListener {
 				Warning w = new Warning("찾는 포켓몬이 없습니다!");
 				w.setVisible(true);
 			}
+			
+		}
+		
+		if (e.getActionCommand() == main_btn.getActionCommand()) {
+			MainUI ui = new MainUI();
+			ui.setVisible(true);
+			dispose();
 		}
 		
 		this.repaint();
