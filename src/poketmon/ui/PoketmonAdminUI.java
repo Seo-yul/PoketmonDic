@@ -466,6 +466,10 @@ public class PoketmonAdminUI extends JFrame implements ActionListener {
 		boolean result = true;
 
 		if (jb == btnNewButton) {
+			if(getText.codePointAt(0)>=44032&&getText.codePointAt(0)<=55215) {
+				System.out.println("한글");
+			}
+			
 			if (dao.findPoketmon(getText) == null) {
 				result = false;
 //				dao.getWikidata(getText);
@@ -486,6 +490,14 @@ public class PoketmonAdminUI extends JFrame implements ActionListener {
 				lblNewLabel_15.setText(poketmon.getH_character());
 				lblNewLabel_17.setText(poketmon.getE_point());
 			}
+			
+			if(getText.codePointAt(0)>=12448&&getText.codePointAt(0)<=12543) {
+				System.out.println("일어");
+			}
+			
+			
+			
+			
 			if (!result) {
 				// 경고창
 				Warning w = new Warning("존재하지 않습니다!");
@@ -601,8 +613,8 @@ public class PoketmonAdminUI extends JFrame implements ActionListener {
 				os.close();
 				
 				Runtime.getRuntime().gc();
-//				Warning w = new Warning("사진등록 성공!");
-//				w.setVisible(true);
+				Warning w = new Warning("사진등록 성공!");
+				w.setVisible(true);
 				
 			} catch (FileNotFoundException e1) {
 				e1.printStackTrace();
