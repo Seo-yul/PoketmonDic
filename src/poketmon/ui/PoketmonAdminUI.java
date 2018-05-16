@@ -133,6 +133,7 @@ public class PoketmonAdminUI extends JFrame implements ActionListener {
 		panel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
 		btnMain = new JButton("Main");
+		btnMain.addActionListener(this);
 		btnMain.setFont(new Font("맑은 고딕", Font.BOLD, 14));
 		btnMain.setPreferredSize(new Dimension(60, 30));
 		btnMain.setBorder(new LineBorder(new Color(186, 85, 211), 1, true));
@@ -619,6 +620,15 @@ public class PoketmonAdminUI extends JFrame implements ActionListener {
 			}
 		}
 		repaint();
+		
+		if (jb == btnMain) {
+		MainUI m = new MainUI();
+		m.setVisible(true);
+		this.dispose();
+		}
+		
+		
+		
 	}
 	
 	public ArrayList<String> init() {
