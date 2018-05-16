@@ -22,7 +22,7 @@ public class PoketmonDAO {
 	private Poketmon poketmon = null;
 	
 	public void getWikiPhoto(String name) { 
-		String initUrl = "http://ko.pokemon.wikia.com/wiki/"+name;
+		String initUrl = "http://ko.pokemon.wikia.com/wiki/"+name+"_(포켓몬)";
 		String imgUrl = null;
 		Connection con = Jsoup.connect(initUrl);
 		Elements els = null;
@@ -65,7 +65,7 @@ public class PoketmonDAO {
 	public boolean getWikidata(String name) {
 		boolean result = false;
 		poketmon = new Poketmon();
-		String url = "http://ko.pokemon.wikia.com/wiki/" + name;
+		String url = "http://ko.pokemon.wikia.com/wiki/" + name + "_(포켓몬)";
 		Connection con = Jsoup.connect(url);
 		ArrayList<String> list = new ArrayList<>();
 		Elements els = null;
@@ -140,8 +140,8 @@ public class PoketmonDAO {
 			cnt = mapper.insertPoketmon(poketmon);
 			session.commit();
 		} catch (Exception e) {
-//			e.printStackTrace();
-			System.out.println("인설트실패");
+			e.printStackTrace();
+//			System.out.println("인설트실패");
 			return false;
 		} finally {
 			if (session != null) session.close();

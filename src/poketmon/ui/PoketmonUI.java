@@ -83,7 +83,7 @@ public class PoketmonUI {
 			//
 		}
 	}
-	public ArrayList<String> init() { 
+	public ArrayList<String> init() {
 		String initUrl = "http://ko.pokemon.wikia.com/wiki/%EA%B5%AD%EA%B0%80%EB%B3%84_%ED%8F%AC%EC%BC%93%EB%AA%AC_%EC%9D%B4%EB%A6%84_%EB%AA%A9%EB%A1%9D";
 		Connection con = Jsoup.connect(initUrl);
 		Elements els = null;
