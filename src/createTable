@@ -12,3 +12,12 @@ CREATE TABLE poketmon (
 	h_character varchar2(60) not null,
 	e_point varchar2(60) not null
 );
+
+create table manager (
+    no number primary key,
+    name varchar2(30) not null,
+    pwd varchar2(30) not null
+);
+
+insert into manager (no, name, pwd) values (1, '윤서율', 'poketmon1234');
+

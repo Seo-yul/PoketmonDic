@@ -130,6 +130,8 @@ public class LoginUI extends JFrame implements ActionListener {
 		}
 		
 		if (e.getSource() == cancel) {
+			MainUI ui = new MainUI();
+			ui.setVisible(true);
 			dispose();
 		}
 		
