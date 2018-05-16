@@ -457,7 +457,7 @@ public class PoketmonAdminUI extends JFrame implements ActionListener {
 //				dao.getWikidata(getText);
 //				dao.getWikiPhoto(getText);
 			}
-			if (result) {
+			if (result) {		
 				poketmon = dao.findPoketmon(getText);
 				lblNewLabel_20.setText(poketmon.getNo());
 				lblNewLabel_18.setText(poketmon.getKor_name());
@@ -652,5 +652,4 @@ public class PoketmonAdminUI extends JFrame implements ActionListener {
 		}
 		return arr;
 	}
-	
 }
