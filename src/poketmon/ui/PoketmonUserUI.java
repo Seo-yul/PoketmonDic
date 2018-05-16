@@ -1,38 +1,33 @@
 package poketmon.ui;
 
 
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.EventQueue;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JTextField;
+import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.GridLayout;
+import java.awt.Image;
+import java.awt.SystemColor;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-
-import javax.swing.UIManager;
-import java.awt.FlowLayout;
-import java.awt.Image;
-import java.awt.Toolkit;
-import javax.swing.JSplitPane;
-import javax.swing.JTextPane;
-import java.awt.GridLayout;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-import java.awt.Component;
+import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
 import poketmon.dao.PoketmonDAO;
-import poketmon.vo.Poketmon;
-
-import java.awt.SystemColor;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.awt.Font;
 
 public class PoketmonUserUI extends JFrame implements ActionListener {
 
@@ -74,7 +69,6 @@ public class PoketmonUserUI extends JFrame implements ActionListener {
 	private JPanel w_panel;
 	private JPanel w2_panel;
 	private JLabel w_lbl;
-	private JLabel wv_lbl;
 	private JPanel tp2_panel;
 	private JLabel tp_lbl;
 	private JLabel tpv_lbl;
@@ -104,6 +98,9 @@ public class PoketmonUserUI extends JFrame implements ActionListener {
 	private JLabel hchv_lbl;
 	private PoketmonDAO dao = new PoketmonDAO();
 	private JButton main_btn;
+	private JScrollPane h_scroll;
+	private JLabel wv_lbl;
+	private JScrollPane scrollPane;
 	
 	/**
 	 * Launch the application.
@@ -289,6 +286,12 @@ public class PoketmonUserUI extends JFrame implements ActionListener {
 		hv_lbl.setHorizontalAlignment(SwingConstants.CENTER);
 		h2_panel.add(hv_lbl);
 		
+		h_scroll = new JScrollPane(hv_lbl);
+		h_scroll.setFont(new Font("맑은 고딕", Font.PLAIN, 12));
+		h_scroll.setBackground(Color.WHITE);
+		h_scroll.setBorder(new LineBorder(Color.WHITE));
+		h2_panel.add(h_scroll, BorderLayout.CENTER);
+		
 		weight_panel = new JPanel();
 		weight_panel.setBorder(new LineBorder(Color.WHITE, 1, true));
 		top_panel.add(weight_panel);
@@ -312,12 +315,16 @@ public class PoketmonUserUI extends JFrame implements ActionListener {
 		w2_panel.setLayout(new BorderLayout(0, 0));
 		
 		wv_lbl = new JLabel("?");
-		wv_lbl.setFont(new Font("SansSerif", wv_lbl.getFont().getStyle(), 13));
-		wv_lbl.setBackground(Color.WHITE);
-		wv_lbl.setBorder(new LineBorder(Color.WHITE, 1, true));
 		wv_lbl.setHorizontalTextPosition(SwingConstants.CENTER);
 		wv_lbl.setHorizontalAlignment(SwingConstants.CENTER);
-		w2_panel.add(wv_lbl);
+		wv_lbl.setBorder(new LineBorder(Color.WHITE, 1, true));
+		wv_lbl.setBackground(Color.WHITE);
+		w2_panel.add(wv_lbl, BorderLayout.CENTER);
+		
+		scrollPane = new JScrollPane(wv_lbl);
+		scrollPane.setBackground(Color.WHITE);
+		scrollPane.setBorder(new LineBorder(Color.WHITE));
+		w2_panel.add(scrollPane, BorderLayout.CENTER);
 		
 		c_rate_panel = new JPanel();
 		c_rate_panel.setBorder(new LineBorder(Color.WHITE, 1, true));
@@ -551,7 +558,7 @@ public class PoketmonUserUI extends JFrame implements ActionListener {
 			} 
 			
 			if (result) {
-			dao.getWikiPhoto(name);
+			//dao.getWikiPhoto(name);
 			num_lbl.setText(dao.findPoketmon(name).getNo());
 			ko_name_lbl.setText(dao.findPoketmon(name).getKor_name());
 			jp_name_lbl.setText(dao.findPoketmon(name).getJap_name());

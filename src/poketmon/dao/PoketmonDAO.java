@@ -1,5 +1,7 @@
 package poketmon.dao;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -43,17 +45,22 @@ public class PoketmonDAO {
 			URL url=new URL(imgUrl);
 			
 			InputStream is = url.openStream();
+			BufferedInputStream bis = new BufferedInputStream(is);
+			
 		    File file = new File("images\\"+name+".png");
 		    OutputStream os = new FileOutputStream(file);
+		    BufferedOutputStream bos = new BufferedOutputStream(os);
 
-		    byte[] b = new byte[2048];
+		    byte[] b = new byte[61440];
 		    int length =0;
 
-		    while ((length = is.read(b)) != -1) {
-		        os.write(b, 0, length);
+		    while ((length = bis.read(b)) != -1) {
+		        bos.write(b, 0, length);
 		    }
 
+		    bis.close();
 		    is.close();
+		    bos.close();
 		    os.close();
 			
 			  

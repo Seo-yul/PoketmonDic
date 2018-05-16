@@ -19,6 +19,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.util.ArrayList;
 
+import javax.imageio.ImageIO;
 import javax.imageio.stream.FileImageInputStream;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -29,7 +30,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
@@ -135,8 +135,8 @@ public class PoketmonAdminUI extends JFrame implements ActionListener {
 		btnMain = new JButton("Main");
 		btnMain.addActionListener(this);
 		btnMain.setFont(new Font("맑은 고딕", Font.BOLD, 14));
-		btnMain.setPreferredSize(new Dimension(60, 30));
-		btnMain.setBorder(new LineBorder(new Color(186, 85, 211), 1, true));
+		btnMain.setPreferredSize(new Dimension(60, 40));
+		btnMain.setBorder(new LineBorder(new Color(147, 112, 219), 1, true));
 		btnMain.setBackground(new Color(147, 112, 219));
 		panel.add(btnMain);
 
@@ -146,25 +146,27 @@ public class PoketmonAdminUI extends JFrame implements ActionListener {
 		panel.add(panel_5);
 
 		textField = new JTextField();
+		textField.setFont(new Font("SansSerif", Font.PLAIN, 17));
 		panel_5.add(textField);
-		textField.setHorizontalAlignment(SwingConstants.CENTER);
+		textField.setHorizontalAlignment(SwingConstants.LEFT);
 		textField.setBackground(Color.WHITE);
 		textField.setPreferredSize(new Dimension(6, 30));
 		textField.setMinimumSize(new Dimension(6, 25));
 		textField.setBorder(null);
-		textField.setColumns(55);
+		textField.setColumns(48);
 
 		btnNewButton = new JButton("검색");
+		btnNewButton.setPreferredSize(new Dimension(57, 30));
 		btnNewButton.setFont(new Font("맑은 고딕", Font.BOLD, 14));
 		panel_5.add(btnNewButton);
 		btnNewButton.addActionListener(this);
 		btnNewButton.setBackground(Color.ORANGE);
-		btnNewButton.setBorder(UIManager.getBorder("Button.border"));
+		btnNewButton.setBorder(new LineBorder(Color.ORANGE));
 
 		panel_2 = new JPanel();
 
 		panel_1 = new JPanel();
-		panel_1.setPreferredSize(new Dimension(360, 10));
+		panel_1.setPreferredSize(new Dimension(340, 10));
 		panel_1.setBackground(Color.ORANGE);
 		contentPane.add(panel_1, BorderLayout.WEST);
 		panel_1.setLayout(new BorderLayout(0, 0));
@@ -182,7 +184,7 @@ public class PoketmonAdminUI extends JFrame implements ActionListener {
 		lblNewLabel_18 = new JTextField("한국이름");
 		lblNewLabel_18.setBackground(Color.ORANGE);
 		lblNewLabel_18.setBorder(new LineBorder(Color.WHITE, 1, true));
-		lblNewLabel_18.setForeground(new Color(25, 25, 112));
+		lblNewLabel_18.setForeground(Color.BLACK);
 		lblNewLabel_18.setFont(new Font("맑은 고딕", Font.BOLD, 25));
 		lblNewLabel_18.setHorizontalAlignment(SwingConstants.CENTER);
 		panel_13.add(lblNewLabel_18);
@@ -191,7 +193,7 @@ public class PoketmonAdminUI extends JFrame implements ActionListener {
 		lblNewLabel_19.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_19.setBorder(new LineBorder(Color.WHITE, 1, true));
 		lblNewLabel_19.setBackground(Color.ORANGE);
-		lblNewLabel_19.setForeground(new Color(25, 25, 112));
+		lblNewLabel_19.setForeground(new Color(0, 0, 0));
 		lblNewLabel_19.setFont(
 				new Font("Arial Unicode MS", Font.BOLD, 17));
 
@@ -215,7 +217,7 @@ public class PoketmonAdminUI extends JFrame implements ActionListener {
 		panel_7.setBackground(Color.WHITE);
 		panel_1.add(panel_7, BorderLayout.CENTER);
 		panel_7.setLayout(new BorderLayout(0, 0));
-		lblNewLabel_21 = new JLabel(new ImageIcon("logo.jpg"));
+		lblNewLabel_21 = new JLabel(new ImageIcon("poketlogo.png"));
 		lblNewLabel_21.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_21.setHorizontalTextPosition(SwingConstants.CENTER);
 		panel_7.add(lblNewLabel_21, BorderLayout.CENTER);
@@ -224,7 +226,7 @@ public class PoketmonAdminUI extends JFrame implements ActionListener {
 
 		panel_3 = new JPanel();
 		panel_3.setBorder(new LineBorder(Color.ORANGE, 1, true));
-		panel_3.setPreferredSize(new Dimension(400, 10));
+		panel_3.setPreferredSize(new Dimension(430, 10));
 		panel_3.setBackground(Color.ORANGE);
 		contentPane.add(panel_3, BorderLayout.EAST);
 		panel_3.setLayout(new GridLayout(5, 0, 0, 0));
@@ -242,7 +244,7 @@ public class PoketmonAdminUI extends JFrame implements ActionListener {
 		lblNewLabel.setHorizontalTextPosition(SwingConstants.CENTER);
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
-		lblNewLabel.setBorder(new LineBorder(Color.LIGHT_GRAY, 1, true));
+		lblNewLabel.setBorder(new LineBorder(Color.WHITE, 1, true));
 		panel_8.add(lblNewLabel);
 
 		lblNewLabel_1 = new JLabel("몸무게");
@@ -250,21 +252,21 @@ public class PoketmonAdminUI extends JFrame implements ActionListener {
 		lblNewLabel_1.setBackground(Color.ORANGE);
 		lblNewLabel_1.setHorizontalTextPosition(SwingConstants.CENTER);
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_1.setBorder(new LineBorder(Color.LIGHT_GRAY, 1, true));
+		lblNewLabel_1.setBorder(new LineBorder(Color.WHITE, 1, true));
 		panel_8.add(lblNewLabel_1);
 
 		lblNewLabel_2 = new JTextField();
-		lblNewLabel_2.setFont(new Font("SansSerif", lblNewLabel_2.getFont().getStyle(), 13));
+		lblNewLabel_2.setFont(new Font("SansSerif", Font.BOLD, 12));
 		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_2.setBorder(new LineBorder(Color.LIGHT_GRAY, 1, true));
+		lblNewLabel_2.setBorder(new LineBorder(new Color(211, 211, 211), 1, true));
 		lblNewLabel_2.setBackground(Color.WHITE);
 		lblNewLabel_2.setColumns(10);
 		panel_8.add(lblNewLabel_2);
 
 		lblNewLabel_3 = new JTextField("");
-		lblNewLabel_3.setFont(new Font("SansSerif", lblNewLabel_3.getFont().getStyle() | Font.BOLD, 13));
+		lblNewLabel_3.setFont(new Font("SansSerif", Font.BOLD, 12));
 		lblNewLabel_3.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_3.setBorder(new LineBorder(Color.LIGHT_GRAY, 1, true));
+		lblNewLabel_3.setBorder(new LineBorder(new Color(211, 211, 211), 1, true));
 		lblNewLabel_3.setBackground(Color.WHITE);
 		lblNewLabel_3.setColumns(10);
 		panel_8.add(lblNewLabel_3);
@@ -276,31 +278,33 @@ public class PoketmonAdminUI extends JFrame implements ActionListener {
 		panel_9.setLayout(new GridLayout(2, 2, 0, 0));
 
 		lblNewLabel_4 = new JLabel("포획률");
+		lblNewLabel_4.setBackground(Color.ORANGE);
 		lblNewLabel_4.setFont(new Font("맑은 고딕", Font.BOLD, 18));
 		lblNewLabel_4.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_4.setHorizontalTextPosition(SwingConstants.CENTER);
-		lblNewLabel_4.setBorder(new LineBorder(Color.LIGHT_GRAY, 1, true));
+		lblNewLabel_4.setBorder(new LineBorder(Color.WHITE, 1, true));
 		panel_9.add(lblNewLabel_4);
 
 		lblNewLabel_5 = new JLabel("성비");
+		lblNewLabel_5.setBackground(Color.ORANGE);
 		lblNewLabel_5.setFont(new Font("맑은 고딕", Font.BOLD, 18));
 		lblNewLabel_5.setHorizontalTextPosition(SwingConstants.CENTER);
 		lblNewLabel_5.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_5.setBorder(new LineBorder(Color.LIGHT_GRAY, 1, true));
+		lblNewLabel_5.setBorder(new LineBorder(Color.WHITE, 1, true));
 		panel_9.add(lblNewLabel_5);
 
 		lblNewLabel_6 = new JTextField();
-		lblNewLabel_6.setFont(new Font("SansSerif", lblNewLabel_6.getFont().getStyle(), 13));
+		lblNewLabel_6.setFont(new Font("SansSerif", Font.BOLD, 13));
 		lblNewLabel_6.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_6.setBorder(new LineBorder(Color.LIGHT_GRAY, 1, true));
+		lblNewLabel_6.setBorder(new LineBorder(new Color(211, 211, 211), 1, true));
 		lblNewLabel_6.setBackground(Color.WHITE);
 		lblNewLabel_6.setColumns(10);
 		panel_9.add(lblNewLabel_6);
 
 		lblNewLabel_7 = new JTextField();
-		lblNewLabel_7.setFont(new Font("SansSerif", lblNewLabel_7.getFont().getStyle(), 13));
+		lblNewLabel_7.setFont(new Font("SansSerif", Font.BOLD, 13));
 		lblNewLabel_7.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_7.setBorder(new LineBorder(Color.LIGHT_GRAY, 1, true));
+		lblNewLabel_7.setBorder(new LineBorder(new Color(211, 211, 211), 1, true));
 		lblNewLabel_7.setBackground(Color.WHITE);
 		lblNewLabel_7.setColumns(10);
 		panel_9.add(lblNewLabel_7);
@@ -317,28 +321,28 @@ public class PoketmonAdminUI extends JFrame implements ActionListener {
 		lblNewLabel_16.setBackground(Color.ORANGE);
 		lblNewLabel_16.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_16.setHorizontalTextPosition(SwingConstants.CENTER);
-		lblNewLabel_16.setBorder(new LineBorder(Color.LIGHT_GRAY, 1, true));
+		lblNewLabel_16.setBorder(new LineBorder(Color.WHITE, 1, true));
 
 		lblNewLabel_9 = new JLabel("분류");
 		lblNewLabel_9.setFont(new Font("맑은 고딕", Font.BOLD, 18));
 		lblNewLabel_9.setBackground(Color.ORANGE);
 		lblNewLabel_9.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_9.setHorizontalTextPosition(SwingConstants.CENTER);
-		lblNewLabel_9.setBorder(new LineBorder(Color.LIGHT_GRAY, 1, true));
+		lblNewLabel_9.setBorder(new LineBorder(Color.WHITE, 1, true));
 		panel_10.add(lblNewLabel_9);
 
 		lblNewLabel_17 = new JTextField();
-		lblNewLabel_17.setFont(new Font("SansSerif", lblNewLabel_17.getFont().getStyle(), 13));
+		lblNewLabel_17.setFont(new Font("SansSerif", Font.BOLD, 13));
 		panel_10.add(lblNewLabel_17);
 		lblNewLabel_17.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_17.setBorder(new LineBorder(Color.LIGHT_GRAY, 1, true));
+		lblNewLabel_17.setBorder(new LineBorder(new Color(211, 211, 211), 1, true));
 		lblNewLabel_17.setBackground(Color.WHITE);
 		lblNewLabel_17.setColumns(10);
 
 		lblNewLabel_11 = new JTextField();
-		lblNewLabel_11.setFont(new Font("SansSerif", lblNewLabel_11.getFont().getStyle(), 13));
+		lblNewLabel_11.setFont(new Font("SansSerif", Font.BOLD, 13));
 		lblNewLabel_11.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_11.setBorder(new LineBorder(Color.LIGHT_GRAY, 1, true));
+		lblNewLabel_11.setBorder(new LineBorder(new Color(211, 211, 211), 1, true));
 		lblNewLabel_11.setBackground(Color.WHITE);
 		lblNewLabel_11.setColumns(10);
 		panel_10.add(lblNewLabel_11);
@@ -354,7 +358,7 @@ public class PoketmonAdminUI extends JFrame implements ActionListener {
 		lblNewLabel_12.setBackground(Color.ORANGE);
 		lblNewLabel_12.setHorizontalTextPosition(SwingConstants.CENTER);
 		lblNewLabel_12.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_12.setBorder(new LineBorder(Color.LIGHT_GRAY, 1, true));
+		lblNewLabel_12.setBorder(new LineBorder(Color.WHITE, 1, true));
 		panel_11.add(lblNewLabel_12);
 
 		lblNewLabel_13 = new JLabel("숨겨진 특성");
@@ -362,21 +366,21 @@ public class PoketmonAdminUI extends JFrame implements ActionListener {
 		lblNewLabel_13.setBackground(Color.ORANGE);
 		lblNewLabel_13.setHorizontalTextPosition(SwingConstants.CENTER);
 		lblNewLabel_13.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_13.setBorder(new LineBorder(Color.LIGHT_GRAY, 1, true));
+		lblNewLabel_13.setBorder(new LineBorder(Color.WHITE, 1, true));
 		panel_11.add(lblNewLabel_13);
 
 		lblNewLabel_14 = new JTextField();
-		lblNewLabel_14.setFont(new Font("SansSerif", lblNewLabel_14.getFont().getStyle(), 13));
+		lblNewLabel_14.setFont(new Font("SansSerif", Font.BOLD, 13));
 		lblNewLabel_14.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_14.setBorder(new LineBorder(Color.LIGHT_GRAY, 1, true));
+		lblNewLabel_14.setBorder(new LineBorder(new Color(211, 211, 211), 1, true));
 		lblNewLabel_14.setBackground(Color.WHITE);
 		lblNewLabel_14.setColumns(10);
 		panel_11.add(lblNewLabel_14);
 
 		lblNewLabel_15 = new JTextField();
-		lblNewLabel_15.setFont(new Font("SansSerif", lblNewLabel_15.getFont().getStyle(), 13));
+		lblNewLabel_15.setFont(new Font("SansSerif", Font.BOLD, 13));
 		lblNewLabel_15.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_15.setBorder(new LineBorder(Color.LIGHT_GRAY, 1, true));
+		lblNewLabel_15.setBorder(new LineBorder(new Color(211, 211, 211), 1, true));
 		lblNewLabel_15.setBackground(Color.WHITE);
 		lblNewLabel_15.setColumns(10);
 		panel_11.add(lblNewLabel_15);
@@ -393,13 +397,13 @@ public class PoketmonAdminUI extends JFrame implements ActionListener {
 		lblNewLabel_8.setBackground(Color.ORANGE);
 		lblNewLabel_8.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_8.setHorizontalTextPosition(SwingConstants.CENTER);
-		lblNewLabel_8.setBorder(new LineBorder(Color.LIGHT_GRAY, 1, true));
+		lblNewLabel_8.setBorder(new LineBorder(Color.WHITE, 1, true));
 
 		lblNewLabel_10 = new JTextField();
-		lblNewLabel_10.setFont(new Font("SansSerif", lblNewLabel_10.getFont().getStyle(), 13));
+		lblNewLabel_10.setFont(new Font("SansSerif", Font.BOLD, 13));
 		panel_12.add(lblNewLabel_10);
 		lblNewLabel_10.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_10.setBorder(new LineBorder(Color.LIGHT_GRAY, 1, true));
+		lblNewLabel_10.setBorder(new LineBorder(new Color(211, 211, 211), 1, true));
 		lblNewLabel_10.setBackground(Color.WHITE);
 		lblNewLabel_10.setColumns(10);
 
@@ -409,38 +413,48 @@ public class PoketmonAdminUI extends JFrame implements ActionListener {
 
 		panel_4 = new JPanel();
 		panel_15.add(panel_4);
-		panel_4.setBackground(new Color(255, 153, 51));
+		panel_4.setBackground(Color.ORANGE);
 
 		btnNewButton_1 = new JButton("등록");
+		btnNewButton_1.setBorder(new LineBorder(new Color(255, 165, 0)));
+		btnNewButton_1.setPreferredSize(new Dimension(57, 30));
 		btnNewButton_1.setFont(new Font("맑은 고딕", Font.BOLD, 14));
 		btnNewButton_1.addActionListener(this);
 
-		btnNewButton_4 = new JButton("사진등록");
+		btnNewButton_4 = new JButton("사진등록/수정");
+		btnNewButton_4.setPreferredSize(new Dimension(110, 30));
+		btnNewButton_4.setBorder(new LineBorder(new Color(255, 165, 0)));
 		btnNewButton_4.setFont(new Font("맑은 고딕", Font.BOLD, 14));
-		btnNewButton_4.setBackground(Color.ORANGE);
+		btnNewButton_4.setBackground(new Color(255, 165, 0));
 		btnNewButton_4.addActionListener(this);
 		panel_4.add(btnNewButton_4);
-		btnNewButton_1.setBackground(Color.ORANGE);
+		btnNewButton_1.setBackground(new Color(255, 165, 0));
 		btnNewButton_1.setMargin(new Insets(2, 20, 2, 20));
 		panel_4.add(btnNewButton_1);
 
 		btnNewButton_2 = new JButton("수정");
+		btnNewButton_2.setPreferredSize(new Dimension(57, 30));
+		btnNewButton_2.setBorder(new LineBorder(new Color(255, 165, 0)));
 		btnNewButton_2.setFont(new Font("맑은 고딕", Font.BOLD, 14));
 		btnNewButton_2.addActionListener(this);
-		btnNewButton_2.setBackground(Color.ORANGE);
+		btnNewButton_2.setBackground(new Color(255, 165, 0));
 		btnNewButton_2.setMargin(new Insets(2, 20, 2, 20));
 		panel_4.add(btnNewButton_2);
 
 		btnNewButton_3 = new JButton("삭제");
+		btnNewButton_3.setBorder(new LineBorder(new Color(255, 165, 0)));
+		btnNewButton_3.setPreferredSize(new Dimension(57, 30));
 		btnNewButton_3.setFont(new Font("맑은 고딕", Font.BOLD, 14));
 		btnNewButton_3.addActionListener(this);
-		btnNewButton_3.setBackground(Color.ORANGE);
+		btnNewButton_3.setBackground(new Color(255, 165, 0));
 		btnNewButton_3.setMargin(new Insets(2, 20, 2, 20));
 		panel_4.add(btnNewButton_3);
 		
 		btnNewButton_5 = new JButton("갱신");
+		btnNewButton_5.setPreferredSize(new Dimension(57, 30));
+		btnNewButton_5.setBorder(new LineBorder(new Color(255, 165, 0)));
 		btnNewButton_5.setFont(new Font("맑은 고딕", Font.BOLD, 14));
-		btnNewButton_5.setBackground(Color.ORANGE);
+		btnNewButton_5.setBackground(new Color(255, 165, 0));
 		btnNewButton_5.addActionListener(this);
 		panel_4.add(btnNewButton_5);
 	}
@@ -471,9 +485,6 @@ public class PoketmonAdminUI extends JFrame implements ActionListener {
 				lblNewLabel_14.setText(poketmon.getCharacter());
 				lblNewLabel_15.setText(poketmon.getH_character());
 				lblNewLabel_17.setText(poketmon.getE_point());
-				Icon icon = new ImageIcon("images\\" + getText + ".png");
-				lblNewLabel_21.setIcon(icon);
-				repaint();
 			}
 			if (!result) {
 				// 경고창
@@ -544,8 +555,8 @@ public class PoketmonAdminUI extends JFrame implements ActionListener {
 			}
 			if(result) {
 			dao.deletePoketmon(lblNewLabel_18.getText());
-			Icon icon = new ImageIcon("");
-			lblNewLabel_21.setIcon(icon);
+//			Icon icon = new ImageIcon("");
+//			lblNewLabel_21.setIcon(icon);
 			lblNewLabel_20.setText("");
 			lblNewLabel_18.setText("");
 			lblNewLabel_19.setText("");
@@ -569,12 +580,15 @@ public class PoketmonAdminUI extends JFrame implements ActionListener {
 			
 		}
 		if (jb == btnNewButton_4) {
+			String name = null;
 			JFileChooser fc = new JFileChooser();
 			fc.showOpenDialog(this);
 			File ofile = fc.getSelectedFile();
 			try {
 				FileImageInputStream fis = new FileImageInputStream(ofile);
-				File sfile = new File("images\\" + fc.getSelectedFile().getName());
+				name = lblNewLabel_18.getText();
+				System.out.println(name);
+				File sfile = new File("images\\" +name +".png");
 				OutputStream os = new FileOutputStream(sfile);
 				byte[] b = new byte[2048];
 				int length = 0;
@@ -585,19 +599,16 @@ public class PoketmonAdminUI extends JFrame implements ActionListener {
 
 				fis.close();
 				os.close();
-				Icon icon = new ImageIcon("images\\" + fc.getSelectedFile().getName());
-				lblNewLabel_21.setIcon(icon);
-
+				
+				Runtime.getRuntime().gc();
+//				Warning w = new Warning("사진등록 성공!");
+//				w.setVisible(true);
+				
 			} catch (FileNotFoundException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			} catch (IOException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
+//				e1.printStackTrace();
 			}
-
-			String a = new String();
-			
 			
 		}
 		
@@ -609,8 +620,8 @@ public class PoketmonAdminUI extends JFrame implements ActionListener {
 			
 			if (dao.findPoketmon(getText) == null) {
 				result = dao.getWikidata(getText);
-				dao.getWikiPhoto(getText);
 			}
+			dao.getWikiPhoto(getText);
 		}
 			
 			if (result) {
@@ -619,14 +630,25 @@ public class PoketmonAdminUI extends JFrame implements ActionListener {
 				w.setVisible(true);
 			}
 		}
+		Image image1 = null;
+		 File sourceimage = new File("images\\"+getText+".png");
+	     try {
+			image1 = ImageIO.read(sourceimage);
+		} catch (IOException e1) {
+//			e1.printStackTrace();
+		}
+		
+		Icon icon = new ImageIcon(image1);
+		lblNewLabel_21.setIcon(icon);
 		repaint();
+		validate();
+		
 		
 		if (jb == btnMain) {
 		MainUI m = new MainUI();
 		m.setVisible(true);
 		this.dispose();
 		}
-		
 		
 		
 	}

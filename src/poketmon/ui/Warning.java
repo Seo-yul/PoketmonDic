@@ -50,7 +50,7 @@ public class Warning extends JFrame implements ActionListener {
 		Dimension screenSize = kit.getScreenSize();
 		setBounds(screenSize.width / 2  - 250/2, screenSize.height / 2 - 150/2, 250, 150);
 		
-		setTitle("Warning message!");
+		setTitle("Check the message!");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		//setBounds(700, 400, 250, 150);
 		contentPane = new JPanel();
