@@ -633,7 +633,7 @@ public class PoketmonAdminUI extends JFrame implements ActionListener {
 			init();
 			for(String s : arr) {
 				getText = s;
-				System.out.println(getText);
+				System.out.println(getText+" 데이터 확인 중..");
 			
 			if (dao.findPoketmon(getText) == null) {
 				result = dao.getWikidata(getText);
