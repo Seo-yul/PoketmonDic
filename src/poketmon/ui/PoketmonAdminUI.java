@@ -541,7 +541,10 @@ public class PoketmonAdminUI extends JFrame implements ActionListener {
 				poketmon.setH_character(lblNewLabel_15.getText());
 				poketmon.setE_point(lblNewLabel_17.getText());
 				result = dao.insertPoketmon(poketmon);
-				
+				if(result) {
+					Warning w = new Warning("등록성공");
+					w.setVisible(true);
+				}
 			}
 			if (!result) {
 				// 경고창
@@ -662,6 +665,7 @@ public class PoketmonAdminUI extends JFrame implements ActionListener {
 				w.setVisible(true);
 			}
 		}
+		
 		Image image1 = null;
 		
 		try {
@@ -669,16 +673,17 @@ public class PoketmonAdminUI extends JFrame implements ActionListener {
 				File sourceimage = new File("images\\" + poketmon.getKor_name() + ".png");
 				image1 = ImageIO.read(sourceimage);
 			}
-		} catch (IOException e1) {
-			Icon icon = new ImageIcon("poketlogo.png");
-			lblNewLabel_21.setIcon(icon);
-		}
-		try {
-			Icon icon = new ImageIcon(image1);
-			lblNewLabel_21.setIcon(icon);
-		} catch (Exception e2) {
-			Icon icon = new ImageIcon("poketlogo.png");
-			lblNewLabel_21.setIcon(icon);
+			
+		} catch (Exception e1) {
+			try {
+				File sourceimage = new File("images\\" + lblNewLabel_18.getText() + ".png");
+				image1 = ImageIO.read(sourceimage);
+				Icon icon = new ImageIcon(image1);
+				lblNewLabel_21.setIcon(icon);
+			} catch (Exception e2) {
+				Icon icon = new ImageIcon("poketlogo.png");
+				lblNewLabel_21.setIcon(icon);
+			}
 		}
 		
 		panel_2.remove(scrollPane);
@@ -722,7 +727,7 @@ public class PoketmonAdminUI extends JFrame implements ActionListener {
 		
 		arrPoketmon = dao.selectAll();
 		list = new JList(toArrayString(arrPoketmon));
-		list.setFont(new Font("맑은 고딕", Font.PLAIN, 12));
+		list.setFont(new Font("SansSerif", list.getFont().getStyle(), list.getFont().getSize()));
 		list.addListSelectionListener(new ListSelectionListener() {
 
             @Override

@@ -160,8 +160,7 @@ public class PoketmonDAO {
 		if (cnt > 0) {
 			result = true;
 		}
-		Warning w = new Warning("등록성공");
-		w.setVisible(true);
+		
 		return result;
 	}
 	
