@@ -33,6 +33,8 @@ public class PoketmonDAO {
 		int i = 0;
 		
 		try {
+			File file = new File("images\\"+name+".png");
+		    if(!file.exists()) {
 			Document doc = con.get();
 			els = doc.select("div.image.rounded a img");
 			for(Element e : els) {
@@ -47,21 +49,25 @@ public class PoketmonDAO {
 			InputStream is = url.openStream();
 			BufferedInputStream bis = new BufferedInputStream(is);
 			
-		    File file = new File("images\\"+name+".png");
-		    OutputStream os = new FileOutputStream(file);
-		    BufferedOutputStream bos = new BufferedOutputStream(os);
+		    
+		    	OutputStream os = new FileOutputStream(file);
+			    BufferedOutputStream bos = new BufferedOutputStream(os);
 
-		    byte[] b = new byte[61440];
-		    int length =0;
+			    byte[] b = new byte[61440];
+			    int length =0;
 
-		    while ((length = bis.read(b)) != -1) {
-		        bos.write(b, 0, length);
+			    while ((length = bis.read(b)) != -1) {
+			        bos.write(b, 0, length);
+			    }
+			    bos.close();
+			    os.close();
+			    bis.close();
+			    is.close();
 		    }
+		    
 
-		    bis.close();
-		    is.close();
-		    bos.close();
-		    os.close();
+		   
+		   
 			
 			  
 		} catch (IOException e) {
@@ -89,7 +95,7 @@ public class PoketmonDAO {
 			System.out.print(doc.selectFirst("strong.rounded").text()+ " ");
 			System.out.print(doc.selectFirst(".name-ko strong").text()+ " ");
 			System.out.print(doc.selectFirst(".name-ja span").text());
-			System.out.println("정보 다운");
+			System.out.println(" 정보 다운");
 			for (Element ee : els) {
 				if(flag)
 					if(ee.text().contains("m")) {
@@ -149,8 +155,8 @@ public class PoketmonDAO {
 			cnt = mapper.insertPoketmon(poketmon);
 			session.commit();
 		} catch (Exception e) {
-			e.printStackTrace();
-//			System.out.println("인설트실패");
+//			e.printStackTrace();
+			System.out.println("인설트실패");
 			return false;
 		} finally {
 			if (session != null) session.close();
@@ -171,7 +177,7 @@ public class PoketmonDAO {
 			p = mapper.findPoketmon(kor_name);
 			
 		} catch (Exception e) {
-			e.printStackTrace();
+//			e.printStackTrace();
 		} finally {
 			if (session != null) session.close();
 		}
