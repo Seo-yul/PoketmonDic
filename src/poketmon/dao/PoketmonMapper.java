@@ -1,5 +1,7 @@
 package poketmon.dao;
 
+import java.util.ArrayList;
+
 import poketmon.vo.Manager;
 import poketmon.vo.Poketmon;
 
@@ -12,4 +14,5 @@ public interface PoketmonMapper {
 	public void getWikiPhoto(String name);
 	public boolean getWikidata(String name);
 	public Manager checkPassword(String name);
+	public ArrayList<Poketmon> selectAll();
 	}
