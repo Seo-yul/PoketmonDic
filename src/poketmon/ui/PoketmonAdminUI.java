@@ -541,8 +541,7 @@ public class PoketmonAdminUI extends JFrame implements ActionListener {
 				poketmon.setH_character(lblNewLabel_15.getText());
 				poketmon.setE_point(lblNewLabel_17.getText());
 				result = dao.insertPoketmon(poketmon);
-				Warning w = new Warning("등록성공");
-				w.setVisible(true);
+				
 			}
 			if (!result) {
 				// 경고창
@@ -681,6 +680,7 @@ public class PoketmonAdminUI extends JFrame implements ActionListener {
 			Icon icon = new ImageIcon("poketlogo.png");
 			lblNewLabel_21.setIcon(icon);
 		}
+		
 		panel_2.remove(scrollPane);
 		listSeting();
 		
@@ -722,6 +722,7 @@ public class PoketmonAdminUI extends JFrame implements ActionListener {
 		
 		arrPoketmon = dao.selectAll();
 		list = new JList(toArrayString(arrPoketmon));
+		list.setFont(new Font("맑은 고딕", Font.PLAIN, 12));
 		list.addListSelectionListener(new ListSelectionListener() {
 
             @Override
