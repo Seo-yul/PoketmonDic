@@ -17,6 +17,11 @@
 		SELECT * FROM POKETMON where JAP_NAME=#{jap_name}
 	</select>
 	
+	<select id="selectAll" resultType="Poketmon">
+		Select * From POKETMON order by no
+	</select>
+	
+	
 	<update id="updatePoketmon" parameterType="Poketmon">
 		UPDATE POKETMON SET KOR_NAME=#{kor_name}, JAP_NAME=#{jap_name}, HEIGHT=#{height}, WEIGHT=#{weight},
 		C_RATE=#{c_rate}, G_RATE=#{g_rate}, TYPE=#{type}, SORT=#{sort}, CHARACTER=#{character}, H_CHARACTER=#{h_character}, E_POINT=#{e_point} 

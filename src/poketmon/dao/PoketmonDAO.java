@@ -24,6 +24,7 @@ public class PoketmonDAO {
 	private SqlSessionFactory factory = MybatisConfig.getResourceAsReader();
 	private Poketmon poketmon = null;
 	private Manager m = null;
+	private ArrayList<Poketmon> arrP = null;
 	
 	public void getWikiPhoto(String name) { 
 		String initUrl = "http://ko.pokemon.wikia.com/wiki/"+name+"_(포켓몬)";
@@ -64,12 +65,6 @@ public class PoketmonDAO {
 			    bis.close();
 			    is.close();
 		    }
-		    
-
-		   
-		   
-			
-			  
 		} catch (IOException e) {
 //			e.printStackTrace();
 		} finally {
@@ -193,7 +188,7 @@ public class PoketmonDAO {
 			p = mapper.findPoketmon2(jap_name);
 			
 		} catch (Exception e) {
-			e.printStackTrace();
+//			e.printStackTrace();
 		} finally {
 			if (session != null) session.close();
 		}
@@ -264,6 +259,27 @@ public class PoketmonDAO {
 		}
 		
 		return m;
+	}
+	
+	public ArrayList<Poketmon> selectAll() {
+		SqlSession session = null;
+		arrP = new ArrayList<>();
+		
+		try {
+			session = factory.openSession();
+			PoketmonMapper mapper = session.getMapper(PoketmonMapper.class);
+			arrP = mapper.selectAll();
+			
+		} catch (Exception e) {
+			//e.printStackTrace();
+			if (arrP == null) {
+				return null;
+			}
+		} finally {
+			if (session != null) session.close();
+		}
+		
+		return arrP;
 	}
 	
 	
