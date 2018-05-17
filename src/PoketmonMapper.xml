@@ -13,6 +13,9 @@
 	<select id="findPoketmon" parameterType="String" resultType="Poketmon">
 		SELECT * FROM POKETMON where KOR_NAME=#{kor_name}
 	</select>
+	<select id="findPoketmon2" parameterType="String" resultType="Poketmon">
+		SELECT * FROM POKETMON where JAP_NAME=#{jap_name}
+	</select>
 	
 	<update id="updatePoketmon" parameterType="Poketmon">
 		UPDATE POKETMON SET KOR_NAME=#{kor_name}, JAP_NAME=#{jap_name}, HEIGHT=#{height}, WEIGHT=#{weight},

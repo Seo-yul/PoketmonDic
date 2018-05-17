@@ -8,6 +8,7 @@ public interface PoketmonMapper {
 	public int updatePoketmon(Poketmon p);
 	public int deletePoketmon(String ko_name);
 	public Poketmon findPoketmon(String ko_name);
+	public Poketmon findPoketmon2(String jap_name);
 	public void getWikiPhoto(String name);
 	public boolean getWikidata(String name);
 	public Manager checkPassword(String name);

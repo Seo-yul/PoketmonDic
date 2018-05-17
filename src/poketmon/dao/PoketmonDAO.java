@@ -177,6 +177,22 @@ public class PoketmonDAO {
 		}
 		return p;
 	}
+	public Poketmon findPoketmon2(String jap_name) {
+		SqlSession session = null;
+		Poketmon p = null;
+		
+		try {
+			session = factory.openSession();
+			PoketmonMapper mapper = session.getMapper(PoketmonMapper.class);
+			p = mapper.findPoketmon2(jap_name);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (session != null) session.close();
+		}
+		return p;
+	}
 	
 	public boolean updatePoketmon(Poketmon poketmon) {
 		SqlSession session = null;
