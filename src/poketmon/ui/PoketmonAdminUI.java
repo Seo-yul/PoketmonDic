@@ -175,7 +175,8 @@ public class PoketmonAdminUI extends JFrame implements ActionListener {
 		btnNewButton.setBorder(new LineBorder(Color.ORANGE));
 
 		panel_2 = new JPanel();
-
+		
+		
 		panel_1 = new JPanel();
 		panel_1.setPreferredSize(new Dimension(340, 10));
 		panel_1.setBackground(Color.ORANGE);
@@ -233,56 +234,7 @@ public class PoketmonAdminUI extends JFrame implements ActionListener {
 		panel_2.setBackground(Color.ORANGE);
 		contentPane.add(panel_2, BorderLayout.WEST);
 		
-		list = new JList(toArrayString(arrPoketmon));
-		list.addListSelectionListener(new ListSelectionListener() {
-
-            @Override
-            public void valueChanged(ListSelectionEvent levent) {
-                if (!levent.getValueIsAdjusting()) {
-                	
-                	int i = list.getSelectedIndex();
-                	lblNewLabel_20.setText(arrPoketmon.get(i).getNo());
-    				lblNewLabel_18.setText(arrPoketmon.get(i).getKor_name());
-    				lblNewLabel_19.setText(arrPoketmon.get(i).getJap_name());
-    				lblNewLabel_2.setText(arrPoketmon.get(i).getHeight());
-    				lblNewLabel_3.setText(arrPoketmon.get(i).getWeight());
-    				lblNewLabel_6.setText(""+ arrPoketmon.get(i).getC_rate());
-    				lblNewLabel_7.setText(arrPoketmon.get(i).getG_rate());
-    				lblNewLabel_10.setText(arrPoketmon.get(i).getType());
-    				lblNewLabel_11.setText(arrPoketmon.get(i).getSort());
-    				lblNewLabel_14.setText(arrPoketmon.get(i).getCharacter());
-    				lblNewLabel_15.setText(arrPoketmon.get(i).getH_character());
-    				lblNewLabel_17.setText(arrPoketmon.get(i).getE_point());
-    				
-    				Image image1 = null;
-    				File sourceimage = new File("images\\" + arrPoketmon.get(i).getKor_name() + ".png");
-    				try {
-    					if (arrPoketmon.get(i) != null)
-    						image1 = ImageIO.read(sourceimage);
-    					try {
-    						Icon icon = new ImageIcon(image1);
-    						lblNewLabel_21.setIcon(icon);
-    					} catch (Exception e2) {
-    						Icon icon = new ImageIcon("poketlogo.png");
-    						lblNewLabel_21.setIcon(icon);
-    					}
-    				} catch (IOException e1) {
-    					Icon icon = new ImageIcon("poketlogo.png");
-    					lblNewLabel_21.setIcon(icon);
-    				}
-                }
-                repaint();
-        		validate();
-            }
-        });
-		
-		
-		
-		scrollPane = new JScrollPane(list);
-		scrollPane.setPreferredSize(new Dimension(170, 455));
-		
-		
-		panel_2.add(scrollPane);
+		listSeting();
 		
 		
 
@@ -706,17 +658,18 @@ public class PoketmonAdminUI extends JFrame implements ActionListener {
 				Warning w = new Warning("삭제할 수 없습니다.");
 				w.setVisible(true);
 			} else {
-				poketmon = null;
+				poketmon = new Poketmon();
 				Warning w = new Warning("삭제 성공");
 				w.setVisible(true);
 			}
-
 		}
 		Image image1 = null;
-		File sourceimage = new File("images\\" + poketmon.getKor_name() + ".png");
+		
 		try {
-			if (poketmon != null)
+			if (poketmon != null) {
+				File sourceimage = new File("images\\" + poketmon.getKor_name() + ".png");
 				image1 = ImageIO.read(sourceimage);
+			}
 		} catch (IOException e1) {
 			Icon icon = new ImageIcon("poketlogo.png");
 			lblNewLabel_21.setIcon(icon);
@@ -728,7 +681,9 @@ public class PoketmonAdminUI extends JFrame implements ActionListener {
 			Icon icon = new ImageIcon("poketlogo.png");
 			lblNewLabel_21.setIcon(icon);
 		}
-
+		panel_2.remove(scrollPane);
+		listSeting();
+		
 		repaint();
 		validate();
 
@@ -762,6 +717,61 @@ public class PoketmonAdminUI extends JFrame implements ActionListener {
 		}
 		return arr;
 	}
+	
+	public void listSeting() {
+		
+		arrPoketmon = dao.selectAll();
+		list = new JList(toArrayString(arrPoketmon));
+		list.addListSelectionListener(new ListSelectionListener() {
+
+            @Override
+            public void valueChanged(ListSelectionEvent levent) {
+                if (!levent.getValueIsAdjusting()) {                	
+                	int i = list.getSelectedIndex();
+                	lblNewLabel_20.setText(arrPoketmon.get(i).getNo());
+    				lblNewLabel_18.setText(arrPoketmon.get(i).getKor_name());
+    				lblNewLabel_19.setText(arrPoketmon.get(i).getJap_name());
+    				lblNewLabel_2.setText(arrPoketmon.get(i).getHeight());
+    				lblNewLabel_3.setText(arrPoketmon.get(i).getWeight());
+    				lblNewLabel_6.setText(""+ arrPoketmon.get(i).getC_rate());
+    				lblNewLabel_7.setText(arrPoketmon.get(i).getG_rate());
+    				lblNewLabel_10.setText(arrPoketmon.get(i).getType());
+    				lblNewLabel_11.setText(arrPoketmon.get(i).getSort());
+    				lblNewLabel_14.setText(arrPoketmon.get(i).getCharacter());
+    				lblNewLabel_15.setText(arrPoketmon.get(i).getH_character());
+    				lblNewLabel_17.setText(arrPoketmon.get(i).getE_point());
+    				
+    				Image image1 = null;
+    				File sourceimage = new File("images\\" + arrPoketmon.get(i).getKor_name() + ".png");
+    				try {
+    					if (arrPoketmon.get(i) != null)
+    						image1 = ImageIO.read(sourceimage);
+    					try {
+    						Icon icon = new ImageIcon(image1);
+    						lblNewLabel_21.setIcon(icon);
+    					} catch (Exception e2) {
+    						Icon icon = new ImageIcon("poketlogo.png");
+    						lblNewLabel_21.setIcon(icon);
+    					}
+    				} catch (IOException e1) {
+    					Icon icon = new ImageIcon("poketlogo.png");
+    					lblNewLabel_21.setIcon(icon);
+    				}
+                }
+                repaint();
+        		validate();
+            }
+        });
+		
+		
+		
+		scrollPane = new JScrollPane(list);
+		scrollPane.setPreferredSize(new Dimension(170, 455));
+		panel_2.add(scrollPane);
+		
+		
+	}
+	
 	
 public String[] toArrayString (ArrayList<Poketmon> p) {
 	String[] str = new String [p.size()];
