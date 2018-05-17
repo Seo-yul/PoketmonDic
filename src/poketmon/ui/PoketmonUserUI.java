@@ -35,7 +35,6 @@ import poketmon.vo.Poketmon;
 public class PoketmonUserUI extends JFrame implements ActionListener {
 
 	private JPanel contentPane;
-
 	private JPanel find_panel;
 	private JPanel insert_panel;
 	private JTextField insert_tf;

@@ -22,7 +22,6 @@ public class MainUI extends JFrame implements ActionListener {
 	private JLabel lblNewLabel;
 	private JButton usermode;
 	private JButton managermode;
-	private JFrame m;
 
 	/**
 	 * Launch the application.

@@ -19,8 +19,6 @@ import poketmon.dao.PoketmonDAO;
 import poketmon.vo.Poketmon;
 
 public class PoketmonUI {
-	private PoketmonDAO dao = new PoketmonDAO();
-	private Poketmon poketmon = null;
 	public static void main(String[] args) {
 		PoketmonUI ui = new PoketmonUI();
 		ui.init();
