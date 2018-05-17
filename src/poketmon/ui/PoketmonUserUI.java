@@ -30,6 +30,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
 import poketmon.dao.PoketmonDAO;
+import poketmon.vo.Poketmon;
 
 public class PoketmonUserUI extends JFrame implements ActionListener {
 
@@ -549,27 +550,46 @@ public class PoketmonUserUI extends JFrame implements ActionListener {
 		if (e.getActionCommand() == insert_btn.getActionCommand()) {
 			boolean result = true;
 			String name = insert_tf.getText();
+			Poketmon poketmon = dao.findPoketmon(name);
 
-			if (dao.findPoketmon(name) == null) {
+			if (name == null) {
 				result = false;
+//				dao.getWikidata(getText);
+//				dao.getWikiPhoto(getText);
+			}else {
+				if(name.codePointAt(0)>=44032&&name.codePointAt(0)<=55215) {
+					System.out.println("한글");
+					poketmon = dao.findPoketmon(name);
+					if(poketmon ==null) {
+						result = false;
+					}
+				}else{
+					System.out.println("일어");
+					poketmon = dao.findPoketmon2(name);
+					if(poketmon ==null) {
+						result = false;
+					}
+				}
+					
+				
 			}
 
 			if (result) {
-				num_lbl.setText(dao.findPoketmon(name).getNo());
-				ko_name_lbl.setText(dao.findPoketmon(name).getKor_name());
-				jp_name_lbl.setText(dao.findPoketmon(name).getJap_name());
-				hv_lbl.setText(dao.findPoketmon(name).getHeight());
-				wv_lbl.setText(dao.findPoketmon(name).getWeight());
-				cv_lbl.setText(Integer.toString(dao.findPoketmon(name).getC_rate()));
-				gv_lbl.setText(dao.findPoketmon(name).getG_rate());
-				tpv_lbl.setText(dao.findPoketmon(name).getType());
-				sv_lbl.setText(dao.findPoketmon(name).getSort());
-				chv_lbl.setText(dao.findPoketmon(name).getCharacter());
-				hchv_lbl.setText(dao.findPoketmon(name).getH_character());
-				ev_lbl.setText(dao.findPoketmon(name).getE_point());
+				num_lbl.setText(poketmon.getNo());
+				ko_name_lbl.setText(poketmon.getKor_name());
+				jp_name_lbl.setText(poketmon.getJap_name());
+				hv_lbl.setText(poketmon.getHeight());
+				wv_lbl.setText(poketmon.getWeight());
+				cv_lbl.setText(Integer.toString(poketmon.getC_rate()));
+				gv_lbl.setText(poketmon.getG_rate());
+				tpv_lbl.setText(poketmon.getType());
+				sv_lbl.setText(poketmon.getSort());
+				chv_lbl.setText(poketmon.getCharacter());
+				hchv_lbl.setText(poketmon.getH_character());
+				ev_lbl.setText(poketmon.getE_point());
 
 				Image image1 = null;
-				File sourceimage = new File("images\\" + name + ".png");
+				File sourceimage = new File("images\\" + poketmon.getKor_name() + ".png");
 				try {
 					image1 = ImageIO.read(sourceimage);
 				} catch (IOException e1) {
