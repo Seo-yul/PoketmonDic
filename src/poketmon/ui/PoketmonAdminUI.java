@@ -102,6 +102,10 @@ public class PoketmonAdminUI extends JFrame implements ActionListener {
 	private JButton btnMain;
 	private JScrollPane scrollPane;
 	private JList list;
+	private Image image1 = null;
+	private File sourceimage;
+	private	Icon icon;
+	
 	ArrayList<Poketmon> arrPoketmon;
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -480,6 +484,7 @@ public class PoketmonAdminUI extends JFrame implements ActionListener {
 		boolean result = true;
 
 		if (jb == btnNewButton) {
+			System.out.println("검색버튼눌림");
 			if (getText == null) {
 				result = false;
 				// dao.getWikidata(getText);
@@ -498,7 +503,6 @@ public class PoketmonAdminUI extends JFrame implements ActionListener {
 						result = false;
 					}
 				}
-
 			}
 
 			if (result) {
@@ -514,6 +518,17 @@ public class PoketmonAdminUI extends JFrame implements ActionListener {
 				lblNewLabel_14.setText(poketmon.getCharacter());
 				lblNewLabel_15.setText(poketmon.getH_character());
 				lblNewLabel_17.setText(poketmon.getE_point());
+				
+				if (poketmon != null) {
+					sourceimage = new File("images\\" + getText + ".png");
+					try {
+						image1 = ImageIO.read(sourceimage);
+					} catch (IOException e1) {
+					}
+					icon = new ImageIcon(image1);
+					lblNewLabel_21.setIcon(icon);
+				}
+				
 			}
 
 			if (!result) {
@@ -524,10 +539,12 @@ public class PoketmonAdminUI extends JFrame implements ActionListener {
 		}
 
 		if (jb == btnNewButton_1) {
+			System.out.println("등록눌림");
 			if (dao.findPoketmon(lblNewLabel_18.getText()) != null) {
 				result = false;
 			}
 			if (result) {
+				poketmon = new Poketmon();
 				poketmon.setNo(lblNewLabel_20.getText());
 				poketmon.setKor_name(lblNewLabel_18.getText());
 				poketmon.setJap_name(lblNewLabel_19.getText());
@@ -541,6 +558,7 @@ public class PoketmonAdminUI extends JFrame implements ActionListener {
 				poketmon.setH_character(lblNewLabel_15.getText());
 				poketmon.setE_point(lblNewLabel_17.getText());
 				result = dao.insertPoketmon(poketmon);
+				
 				if(result) {
 					Warning w = new Warning("등록성공");
 					w.setVisible(true);
@@ -603,6 +621,10 @@ public class PoketmonAdminUI extends JFrame implements ActionListener {
 				fis.close();
 				os.close();
 
+				image1 = ImageIO.read(sfile);
+				icon = new ImageIcon(image1);
+				lblNewLabel_21.setIcon(icon);
+				
 				Runtime.getRuntime().gc();
 				Warning w = new Warning("사진등록 성공!");
 				w.setVisible(true);
@@ -639,8 +661,8 @@ public class PoketmonAdminUI extends JFrame implements ActionListener {
 				result = false;
 			}
 			if (result) {
-				dao.deletePoketmon(lblNewLabel_18.getText());
-				// Icon icon = new ImageIcon("");
+				result=dao.deletePoketmon(lblNewLabel_18.getText());
+				// icon = new ImageIcon("");
 				// lblNewLabel_21.setIcon(icon);
 				lblNewLabel_20.setText("");
 				lblNewLabel_18.setText("");
@@ -654,6 +676,16 @@ public class PoketmonAdminUI extends JFrame implements ActionListener {
 				lblNewLabel_14.setText("");
 				lblNewLabel_15.setText("");
 				lblNewLabel_17.setText("");
+				System.out.println(result);
+				if (result) {
+					sourceimage = new File("poketlogo.png");
+					try {
+						image1 = ImageIO.read(sourceimage);
+					} catch (IOException e1) {
+					}
+					icon = new ImageIcon(image1);
+					lblNewLabel_21.setIcon(icon);
+				}
 			}
 			if (!result) {
 				// 경고창
@@ -665,27 +697,6 @@ public class PoketmonAdminUI extends JFrame implements ActionListener {
 				w.setVisible(true);
 			}
 		}
-		
-		Image image1 = null;
-		
-		try {
-			if (poketmon != null) {
-				File sourceimage = new File("images\\" + poketmon.getKor_name() + ".png");
-				image1 = ImageIO.read(sourceimage);
-			}
-			
-		} catch (Exception e1) {
-			try {
-				File sourceimage = new File("images\\" + lblNewLabel_18.getText() + ".png");
-				image1 = ImageIO.read(sourceimage);
-				Icon icon = new ImageIcon(image1);
-				lblNewLabel_21.setIcon(icon);
-			} catch (Exception e2) {
-				Icon icon = new ImageIcon("poketlogo.png");
-				lblNewLabel_21.setIcon(icon);
-			}
-		}
-		
 		panel_2.remove(scrollPane);
 		listSeting();
 		
@@ -724,7 +735,7 @@ public class PoketmonAdminUI extends JFrame implements ActionListener {
 	}
 	
 	public void listSeting() {
-		
+		poketmon=null;
 		arrPoketmon = dao.selectAll();
 		list = new JList(toArrayString(arrPoketmon));
 		list.setFont(new Font("SansSerif", list.getFont().getStyle(), list.getFont().getSize()));
@@ -747,20 +758,19 @@ public class PoketmonAdminUI extends JFrame implements ActionListener {
     				lblNewLabel_15.setText(arrPoketmon.get(i).getH_character());
     				lblNewLabel_17.setText(arrPoketmon.get(i).getE_point());
     				
-    				Image image1 = null;
-    				File sourceimage = new File("images\\" + arrPoketmon.get(i).getKor_name() + ".png");
+    				sourceimage = new File("images\\" + arrPoketmon.get(i).getKor_name() + ".png");
     				try {
     					if (arrPoketmon.get(i) != null)
     						image1 = ImageIO.read(sourceimage);
     					try {
-    						Icon icon = new ImageIcon(image1);
+    						icon = new ImageIcon(image1);
     						lblNewLabel_21.setIcon(icon);
     					} catch (Exception e2) {
-    						Icon icon = new ImageIcon("poketlogo.png");
+    						icon = new ImageIcon("poketlogo.png");
     						lblNewLabel_21.setIcon(icon);
     					}
     				} catch (IOException e1) {
-    					Icon icon = new ImageIcon("poketlogo.png");
+    					icon = new ImageIcon("poketlogo.png");
     					lblNewLabel_21.setIcon(icon);
     				}
                 }
@@ -768,14 +778,11 @@ public class PoketmonAdminUI extends JFrame implements ActionListener {
         		validate();
             }
         });
-		
-		
-		
+				
 		scrollPane = new JScrollPane(list);
 		scrollPane.setPreferredSize(new Dimension(170, 455));
 		panel_2.add(scrollPane);
-		
-		
+			
 	}
 	
 	
